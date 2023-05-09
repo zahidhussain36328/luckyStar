@@ -1,0 +1,4467 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>Birthday Star Maps, the sky above you when you were born - Under Lucky Stars</title>
+
+    <meta name="description" content="Birthdays are special, no matter the number - 0th or 100th. Wish someone happy birthday with a star map of the sky above them when they were born."/>
+
+    <style>
+
+        * {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+}
+
+input, body, textarea, button, .expandingArea > pre, select {
+    font-weight: 300;
+    font-size: 5.5vw;
+    font-family: 'Roboto', sans-serif;
+    font-display: fallback;
+}
+
+input, textarea, select {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+}
+
+input[type=submit] {
+    -webkit-border-radius: 0;
+}
+
+button {
+    -webkit-border-radius: 0;
+}
+
+body, html {
+    background-color: white;
+    margin: 0;
+    font-size: 4.5vw;
+    overflow-x: hidden;
+}
+
+p {
+    line-height: 1.6;
+}
+
+a {
+    color: black;
+}
+
+h1, h2, h3 {
+    font-weight: 300;
+    margin: 0 0 0.6em 0;
+}
+
+h1 {
+    font-size: 1.8rem;
+}
+
+h2 {
+    font-size: 1.6rem;
+    padding-top: 0.3em;
+}
+
+h3 {
+    font-size: 1.4rem;
+    padding-top: 0.3em;
+}
+
+#language-switch-banner {
+    border: 0;
+    color: black;
+    font-size: 5.5vw;
+    font-weight: 400;
+    text-align: center;
+    padding: 3vw;
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(244,244,244,1) 50%, rgba(218,227,255,1) 100%);
+    border-bottom: 1px solid #aaa;
+}
+
+#language-switch-banner a {
+    background: white;
+    border: 0;
+    color: #2c3a68;
+    font-size: 5.5vw;
+    border-radius: 5px;
+    font-weight: 400;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.20);
+    height: 15vw;
+    width: 94vw;
+    cursor: pointer;
+    display: inline-block;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-align: center;
+    line-height: 15vw;
+    padding: 0 4vw;
+}
+
+#language-switch-banner a:active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+
+#language-switch-banner p {
+    margin: 0;
+    margin-bottom: 3vw;
+}
+
+.wrapper {
+    position: relative;
+}
+
+.video-container {
+    width: 100vw;
+    height: 100vw;
+    overflow: hidden;
+    position: absolute;
+}
+
+.video-placeholder {
+    width: 100vw;
+    height: 100vw;
+    top: 0;
+    position: relative;
+}
+
+#video-cta {
+    z-index: 100;
+    position: absolute;
+    background: #2c3a68;
+    border: 0;
+    color: white;
+    font-size: 5.5vw;
+    border-radius: 5px;
+    font-weight: 400;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.20);
+    bottom: -7.5vw;
+    height: 15vw;
+    left: 10vw;
+    right: 10vw;
+    width: 80vw;
+    cursor: pointer;
+    display: inline-block;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-align: center;
+    line-height: 15vw;
+    padding: 0 4vw;
+}
+
+#video-cta, .cta.animate .button {
+    background-image: linear-gradient(45deg, #2c3a68, #2c3a68 45%, #6796b3 50%, #2c3a68 55%, #2c3a68);
+    background-size: 300% 100%;
+    background-position-x: 0;
+    animation: shine 6s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+}
+
+@keyframes shine {
+    0% {
+        background-position-x: 0;
+    }
+    88% {
+        background-position-x: 0;
+    }
+    100%   {
+        background-position-x: 100%;
+    }
+}
+
+#video-cta:active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+
+.video-container #mobile-video, .video-container #desktop-video  {
+    width: 100%;
+    height: auto;
+}
+
+.video-container #video-logo {
+    width: 15vw;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#desktop-video-container {
+    display: none;
+}
+
+#mobile-video, #surprise-video {
+    display: block;
+}
+
+#post-video-content {
+    position: relative;
+    background: white;
+    padding-top: 7.5vw;
+    padding-bottom: 60vw;
+    z-index: 2;
+}
+
+#examples-section {
+    position: relative;
+}
+
+.examples {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    display: flex;
+    overflow-y: scroll;
+    padding: 10px 0;
+    align-items: flex-start;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+}
+
+.example-paginator {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 70px;
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-top: 40px;
+}
+
+.example-paginator:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+#example-paginator-left {
+    left: 0;
+    background-image: url(https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/arrow-left.svg);
+}
+
+#example-paginator-right {
+    right: 0;
+    background-image: url(https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/arrow-right.svg);
+}
+
+.example {
+    font-size: 4.5vw;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.28);
+    overflow: hidden;
+    margin: 0 2vw;
+    flex-shrink: 0;
+    width: 80vw;
+    background: white;
+}
+
+.insta-more {
+    font-size: 6vw;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.28);
+    margin-left: 2vw;
+    flex-shrink: 0;
+    width: 80vw;
+    height: 80vw;
+    background: white;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.insta-more a {
+    text-decoration: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.examples .padding {
+    width: 10vw;
+    height: 10px;
+    flex-shrink: 0;
+}
+
+.insta-more a:before {
+    content: '';
+    display: block;
+    width: 28vw;
+    height: 28vw;
+    background-repeat: no-repeat;
+    background-image: url(https://d3j4c7e2o820k1.cloudfront.net/assets/img/instagram-watermark.svg);
+    background-size: 100px 100px;
+    margin: 0 auto 8vw auto;
+}
+
+
+.example .image:after {
+    content: '';
+    position: absolute;
+    top: 3vw;
+    right: 3vw;
+    height: 9vw;
+    width: 9vw;
+    background-image: url(https://d3j4c7e2o820k1.cloudfront.net/assets/img/instagram-watermark.svg);
+    background-size: 9vw 9vw;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.example .profile-photo img {
+    border-radius: 50%;
+    width: 8vw;
+    height: auto;
+    margin-right: 3vw;
+}
+
+.example .image {
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+    position: relative;
+}
+
+.example .image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.example .comments {
+    padding: 3vw;
+    display: flex;
+}
+
+.example .comments p {
+    padding: 0;
+    margin: 0 0 0.5rem 0;
+}
+
+.example .comments strong {
+    font-weight: 400;
+}
+
+.example .comments .date {
+    color: #aaa;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+}
+
+#highlights, #stories, #inspiration-maps-pages {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    display: flex;
+    overflow-x: scroll;
+    padding: 10px 0;
+    align-items: stretch;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+}
+
+#inspiration-maps-pages {
+    align-items: flex-start;
+}
+
+.highlight, .story, .inspiration-map {
+    font-size: 4.5vw;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.28);
+    overflow: hidden;
+    margin: 0 2vw;
+    padding: 4.5vw;
+    flex-shrink: 0;
+    width: 80vw;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    scroll-snap-align: center;
+}
+.inspiration-map {
+    padding: 0px;
+}
+
+.highlight {
+    border: 2px solid #2c3a68;
+}
+
+.highlight img {
+    height: 50px;
+    width: auto;
+}
+
+.story, .inspiration-map {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+
+.story h2 {
+    color: white;
+    text-shadow: 0px 0px 10px black;
+    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
+}
+
+.inspiration-map h2 {
+    color: black;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+}
+
+.story a, .inspiration-map a {
+    text-align: center;
+}
+
+.inspiration-map {
+    background-size:cover;
+    text-decoration: none;
+    position: relative;
+    padding: 0px;
+}
+
+.inspiration-map img {
+    display: block;
+    object-fit: cover;
+    width: 80vw;
+    height: 80vw;
+}
+
+.inspiration-map button {
+    height: 10vw;
+    left: 10vw;
+    width: 60vw;
+    top: 75vw;
+    position: absolute;
+    display: block;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: #00478F;
+    cursor: pointer;
+    color: white;
+    font-weight: 300;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.20);
+    border-radius: 5px;
+}
+
+.inspiration-map-content {
+    text-align: center;
+    padding: 15px;
+    flex-grow: 1;
+}
+
+.highlight h3 {
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 1.6rem;
+    font-weight: 300;
+    text-align: center;
+}
+
+.highlight-text, .story-text {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.inspiration-map-text {
+    color: black;
+}
+
+#highlights .padding, #stories .padding, #inspiration-maps-pages .padding {
+    width: 10vw;
+    height: 10px;
+    flex-shrink: 0;
+}
+
+.review {
+    border-top: 1px solid rgb(222, 223, 227);
+    border-bottom: 10px solid rgb(222, 223, 227);
+    font-size: 4.5vw;
+}
+
+.review .profile {
+    display: flex;
+    align-items: flex-start;
+    padding: 3vw;
+}
+
+.review .profile-text {
+    flex: 1;
+    margin-left: 3.5vw;
+}
+
+.review .profile-text strong {
+    font-weight: 400;
+}
+
+.review .profile-text .date {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.review .profile-photo img {
+    border-radius: 50%;
+    width: 12vw;
+    height: auto;
+}
+
+.review .text {
+    padding: 0 3vw 3vw 3vw;
+}
+
+.review .text.small {
+    font-size: 4.5vw;
+}
+
+.review .text.large {
+    font-size: 6vw;
+}
+
+.review .stars {
+    font-size: 4.0vw;
+    padding: 0.5vw 2vw;
+    border-radius: 5.5vw;
+    background: #4080ff;
+    color: white;
+}
+
+.designs > a, .products > div > a {
+    display: contents;
+}
+
+.designs img, .products img, .love-letters img {
+    width: 100vw;
+    height: auto;
+    display: block;
+    margin-bottom: 3vw;
+}
+
+.love-letters img {
+    border-bottom: 10px solid rgb(222, 223, 227);
+}
+
+.products > div {
+    overflow: hidden;
+}
+
+.products img {
+    transition: transform 5s linear;
+}
+
+.products .product-active img {
+    transform: scale(1.1);
+}
+
+.cta {
+    background: white;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.19);
+    display: none;
+    padding-bottom: 8vh;
+    z-index: 10000;
+}
+
+.cta.revealed {
+    display: block;
+}
+
+.cta .button {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 3vw auto;
+    background: #2c3a68;
+    border: 0;
+    padding: 0 4vw;
+    font-size: 5.5vw;
+    border-radius: 5px;
+    font-weight: 400;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.20);
+    height: 15vw;
+    width: 80vw;
+    cursor: pointer;
+    box-sizing: border-box;
+    line-height: 15vw;
+}
+
+.cta .button:active {
+    box-shadow: none;
+    transform: translateY(2px);
+}
+
+.cta .later {
+    margin: 2vw;
+    font-size: 4vw;
+}
+
+.love {
+    color: #ef391f;
+}
+
+.later-form {
+    text-align: center;
+    display: none;
+}
+
+.cta.revealed .later-form {
+    display: block;
+}
+
+.later-form label {
+    display: block;
+    text-transform: uppercase;
+    font-size: 4vw;
+}
+
+.later-form input[type=text], .later-form input[type=email], .later-form input[type=number], .later-form select {
+    display: block;
+    background-image: linear-gradient(180deg, #EAEAEA 0%, #FFFFFF 100%);
+    height: 40px;
+    line-height: 38px;
+    padding: 0 5px;
+    border: 0;
+    border-bottom: 2px solid #dadada;
+    box-sizing: border-box;
+    margin: 3vw;
+}
+
+.later-form input[type=submit] {
+    background: #00478F;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 0.2rem;
+    margin: 3vw;
+    border: 0;
+    color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.later-form form > div > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.formgroup {
+    display: flex;
+    flex-direction: row !important;
+    margin: 3vw;
+}
+
+.formgroup > div {
+    margin-right: 3vw;
+    flex-grow: 1;
+    flex-basis: 0;
+}
+.formgroup > div:last-child {
+    margin-right: 0;
+}
+
+.formgroup > div > * {
+    width: 100%;
+    margin: 0 !important;
+}
+
+#year {
+    flex-grow: 2;
+}
+
+#month {
+    flex-grow: 3;
+}
+
+#hour > *, #minute > *, #year > *, #day > * {
+    text-align: right;
+}
+
+.alert-success {
+    padding: 5vw;
+    background: #c8ecb1;
+    border-bottom: 2px solid #208000;
+    display: flex;
+    align-items: flex-start;
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.later-form form ul {
+    margin: 0;
+    list-style-type: none;
+    padding: 0;
+    color: #ef391f;
+}
+
+.more {
+    color: #aaa;
+    text-align: center;
+    padding: 3vw;
+    font-size: 4.5vw;
+}
+
+#logo-end {
+    text-align: center;
+    margin-top: 20vw;
+}
+
+#buzzfeed a {
+    padding-bottom: 50px;
+    background-image: url(https://d3j4c7e2o820k1.cloudfront.net/assets/img/starsAligned/buzzfeed@2x.png);
+    background-size: 188px 34px;
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    text-align: left;
+    font-style: italic;
+    font-size: 8vw;
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+
+#buzzfeed {
+    padding-bottom: 8vw;
+}
+
+#social-proofs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10vw 0;
+}
+
+.social-proof {
+    background: white;
+    border-bottom: 1px solid #eee;
+    flex-basis: 80%;
+}
+
+.social-proof:last-child {
+    border-bottom: none;
+}
+
+#facebook-ratings svg, #google-ratings svg {
+    width: 35vw;
+    height: auto;
+}
+
+#facebook-ratings, #google-ratings {
+    padding-top: 8vw;
+    padding-bottom: 8vw;
+    border-bottom: none;
+    flex-basis: 40%;
+}
+
+#facebook-ratings-inner, #google-ratings-inner {
+    background-size: 35vw 12.81vw;
+    padding-bottom: 13vw;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    text-align: center;
+}
+
+#facebook-ratings-inner {
+    background-image: url(https://d3j4c7e2o820k1.cloudfront.net/assets/img/facebook-reviews.png);
+}
+
+#google-ratings-inner {
+    background-image: url(https://d3j4c7e2o820k1.cloudfront.net/assets/img/google-reviews-transparent.png);
+}
+
+#facebook-ratings #rating, #google-ratings #rating {
+    font-weight: bold;
+    font-size: 13vw;
+}
+
+#facebook-ratings #rating {
+    color: #4469b0;
+}
+
+#google-ratings #rating {
+    color: #909090;
+}
+
+#audit {
+    border-top: 1px solid #eee;
+    padding-top: 8vw;
+    text-align: center;
+}
+
+#audit a {
+    text-decoration: none;
+    color: #888;
+}
+
+#audit img {
+    width: 45vw;
+    height: auto;
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#close-later {
+    position: absolute;
+    padding: 5px;
+    top: 0;
+    right: 10px;
+    display: none;
+    cursor: pointer;
+}
+
+footer {
+    background-image: url(https://d3j4c7e2o820k1.cloudfront.net/assets/img/header-background.png);
+    background: image-set( url(/assets/img/header-background.png) 1x, url(/assets/img/header-background@2x.png) 2x );
+    background-repeat: repeat-x;
+    background-position: top center;
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+#footer-links {
+    align-items: stretch;
+    padding: 140px 5vw 5vw 5vw;
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.footer-section {
+    flex-basis: 50%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding-bottom: 10vw;
+    text-align: left;
+}
+
+.footer-section h2 {
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    padding-bottom: 5vw;
+}
+
+#footer-links a {
+    color: #717171;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+#carbon-neutral {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#carbon-neutral a {
+    text-decoration: none;
+    color: #67ba27;
+    font-size: 0.8em;
+}
+
+#card-issuers {
+    font-size: 0;
+    margin-bottom: 12px;
+}
+
+#details-section article,
+#designs-section article,
+#reviews-section article,
+#love-letters-section article,
+#surprise-videos-section article,
+#influencer-video-section article {
+    padding: 2rem 0;
+}
+
+#surprise-videos-section article,
+#influencer-video-section article {
+    padding-bottom: 0;
+}
+
+#surprise-videos-section {
+    margin-bottom: 2rem;
+}
+
+#intro-section article, #faq-section article, #video-section article {
+    padding: 1rem;
+}
+
+.hidden-link a {
+    text-decoration: none;
+    color: black;
+}
+
+section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 0 10vw;
+}
+
+#examples-section, #inspiration-section {
+    background: #f0f0f0;
+    padding: 2rem 0 0 0;
+}
+
+#product-section {
+    border-top: 1px solid #dedede;
+}
+
+p.centered {
+    text-align: center;
+    padding: 0 10vw;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes growin {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to   {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.social-proof.pre-animate {
+    transform: scale(0.9);
+    opacity: 0;
+}
+
+.social-proof.animate {
+    animation: growin 1.5s;
+    animation-fill-mode: both;
+}
+
+.pre-animate .example, .pre-animate .highlight {
+    opacity: 0;
+}
+
+.animate .example, .animate .highlight {
+    animation: fadein 1.5s;
+    animation-fill-mode: both;
+}
+
+.animate .example:nth-of-type(2), .animate .highlight:nth-of-type(2) {
+    animation-delay: 0.2s
+}
+
+.animate .example:nth-of-type(3), .animate .highlight:nth-of-type(3) {
+    animation-delay: 0.4s
+}
+
+.animate .example:nth-of-type(4), .animate .highlight:nth-of-type(4) {
+    animation-delay: 0.6s
+}
+
+.animate .example:nth-of-type(5), .animate .highlight:nth-of-type(5) {
+    animation-delay: 0.8s
+}
+
+.animate .example:nth-of-type(6), .animate .highlight:nth-of-type(6) {
+    animation-delay: 1.0s
+}
+
+.animate .example:nth-of-type(7), .animate .highlight:nth-of-type(7) {
+    animation-delay: 1.2s
+}
+
+.animate .example:nth-of-type(8), .animate .highlight:nth-of-type(8) {
+    animation-delay: 1.4s
+}
+
+.animate .example:nth-of-type(9), .animate .highlight:nth-of-type(9) {
+    animation-delay: 1.6s
+}
+
+.animate .example:nth-of-type(10), .animate .highlight:nth-of-type(10) {
+    animation-delay: 1.8s
+}
+
+.designs img.pre-animate, .love-letters img.pre-animate, .review.pre-animate {
+    opacity: 0;
+}
+
+.designs img.animate, .love-letters img.animate, .review.animate {
+    animation: fadein 1.5s;
+    animation-fill-mode: both;
+}
+
+#info-banner {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2vw 2vw 4vw 2vw;
+    background-color: #f0f0f0;
+    border-top: 1px solid #dadada;
+    font-size: 0.8rem;
+}
+
+#title-inspiration-section ul {
+    font-style: italic;
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+#title-inspiration-section ul li {
+    margin-bottom: 0.25em;
+}
+
+#title-inspiration-section ul li:before {
+    content: '“';
+}
+
+#title-inspiration-section ul li:after {
+    content: '”';
+}
+
+body.scrolled-through-banner .video-container {
+    position: fixed !important;
+    top: 0;
+}
+
+#surprise-video-list {
+    padding: 0 3vw;
+    margin-top: 10vw;
+}
+
+.surprise-video, .surprise-video-in-playlist {
+    display: flex;
+    align-items: center;
+    padding: 3vw 0;
+    border-bottom: 1px solid rgb(222, 223, 227);
+}
+
+.surprise-video-in-playlist {
+    transition: background-color 0.5s;
+}
+
+.surprise-video-in-playlist:first-of-type {
+    padding-top: 3vw;
+}
+
+.surprise-video h3, .surprise-video-in-playlist h3 {
+    font-size: 4.5vw;
+    font-weight: 400;
+    margin: 0;
+}
+
+.surprise-video-details, .surprise-video-details-in-playlist {
+    flex: 1;
+    margin: 0 4.5vw;
+}
+
+.surprise-video-details p, .surprise-video-details-in-playlist p {
+    font-size: 3.5vw;
+    margin: 0;
+}
+
+.surprise-video-thumbnail, .surprise-video-thumbnail-in-playlist {
+    position: relative;
+    width: 50vw;
+    height: 25vw;
+    overflow: hidden;
+}
+
+.surprise-video-thumbnail img, .surprise-video-thumbnail-in-playlist img {
+    width: 50vw;
+    height: 25vw;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#surprise-video-playlist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100vw;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-bottom: 100px;
+    cursor: pointer;
+}
+
+#surprise-video-playlist:after {
+    content: '';
+    position: fixed;
+    width: 100vw;
+    height: 100px;
+    box-shadow: 0 -50px 50px white;
+    bottom: -100px;
+}
+
+.surprise-video-thumbnail .play-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: url(https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/play-button.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+}
+
+#surprise-videos-overlay {
+    position: fixed;
+    z-index: 10000000000000;
+    background: white;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: none;
+}
+
+#surprise-videos-overlay.shown {
+    display: block;
+}
+
+#surprise-video {
+    width: 100vw;
+    height: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid black;
+    z-index: 1;
+    outline:0;
+}
+
+#surprise-video-close-button {
+    background-color: transparent;
+    border: 0;
+    position: absolute;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-image: url(https://d3j4c7e2o820k1.cloudfront.net/assets/img/close-icon.svg);
+    width: 16vw;
+    height: 12vw;
+    right: 3vw;
+    background-size: 8vw 8vw;
+    background-position: center right;
+    top: 2vw;
+    z-index: 2;
+}
+
+#surprise-video-close-button-big {
+    display: none;
+}
+
+.surprise-video-in-playlist.playing {
+    background: #e5e5e5;
+}
+
+#influencer-video-embed {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    margin-bottom: 25px;
+}
+
+#influencer-video-embed video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.promotion {
+    background: black;
+    padding: 4vw;
+    font-size: 4vw;
+    color: white;
+    text-align: center;
+    border-bottom: 0.25px solid white;
+}
+
+@media only screen and (max-width : 767px) {
+    #intro-section p {
+        text-align: center;
+    }
+
+    #intro-section h1 {
+        text-align: center;
+    }
+
+    #intro-section h2 {
+        font-size: 1rem;
+        font-weight: 400;
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 768px) {
+
+    input, body, textarea, button, .expandingArea > pre, select {
+        font-size: 18px;
+    }
+
+    body, html {
+        font-size: 18px;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+        font-weight: 400;
+        letter-spacing: -1px;
+    }
+
+    #intro-section h2 {
+        text-align: left;
+    }
+
+    section h2 {
+         padding: 0;
+    }
+
+    section p.centered {
+        padding: 0;
+    }
+
+    .wrapper {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    #language-switch-banner {
+        font-size: 20px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #language-switch-banner a {
+        font-size: 20px;
+        padding: 0 30px;
+        width: initial;
+        height: 45px;
+        line-height: 45px;
+    }
+
+    #language-switch-banner p {
+        margin: 0;
+        margin-right: 20px;
+    }
+
+    .video-container {
+        width: 100%;
+        height: 500px;
+        position: absolute;
+        text-align: center;
+    }
+
+    .video-placeholder {
+        width: 1200px;
+        height: 500px;
+        top: 0;
+    }
+
+    #video-cta {
+        padding: 0 30px;
+        font-size: 20px;
+        bottom: 30px;
+        left: 30px;
+        width: 250px;
+        height: 55px;
+        line-height: 55px;
+    }
+
+    #post-video-content {
+        padding-top: 0;
+        padding-bottom: 200px;
+    }
+
+    .video-container #video-logo {
+        width: 70px;
+        height: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .video-container {
+        text-align: center;
+        overflow: hidden;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    #desktop-video-container {
+        display: block;
+        height: 500px;
+        width: 2000px;
+        flex-shrink: 0;
+    }
+
+    #desktop-video {
+        height: 500px;
+        width: auto;
+    }
+
+    #mobile-video {
+        display: none;
+    }
+
+    .examples {
+        padding-left: 60px;
+    }
+
+    .example {
+        width: 300px;
+        font-size: 16px;
+        margin: 0 10px;
+    }
+
+    .example-paginator {
+        display: block;
+    }
+
+    .example .image:after {
+        top: 5px;
+        right: 5px;
+        height: 30px;
+        width: 30px;
+        background-size: 25px 25px;
+    }
+
+    .example .profile-photo img {
+        border-radius: 50%;
+        width: 25px;
+        height: auto;
+        margin-right: 10px;
+    }
+
+    .example .comments {
+        padding: 10px;
+    }
+
+    .insta-more {
+        width: 300px;
+        height: 300px;
+        font-size: 20px;
+    }
+
+    .insta-more a:before {
+        content: '';
+        display: block;
+        width: 100px;
+        height: 100px;
+        background-repeat: no-repeat;
+        background-image: url(https://d3j4c7e2o820k1.cloudfront.net/assets/img/instagram-watermark.svg);
+        background-size: 100px 100px;
+        margin: 0 auto 24px auto;
+    }
+
+    .examples .padding, #highlights .padding, #inspiration-maps-pages .padding {
+        width: 100px;
+    }
+
+    #stories .padding {
+        width: 0;
+    }
+
+    #highlights-section {
+        margin-top: 1.5em;
+    }
+
+    #highlights, #stories {
+        scroll-snap-type: none;
+    }
+
+    #stories {
+        justify-content: center;
+    }
+
+    .inspiration-map {
+        font-size: 16px;
+        margin: 10px 10px;
+    }
+
+    .inspiration-map img {
+        width: 320px;
+        height: 320px;
+    }
+
+    .inspiration-map button {
+        height: 30px;
+        left: 30px;
+        width: 260px;
+        top: 305px;
+    }
+
+    .highlight, .story {
+        font-size: 16px;
+        margin: 10px 10px;
+        padding: 20px;
+    }
+
+    .highlight {
+        width: 280px;
+    }
+
+    .story, .inspiration-map {
+        width: 320px;
+        max-width: 30%;
+    }
+
+    .review {
+        font-size: 16px;
+        border: 1px solid rgb(222, 223, 227);
+        border-radius: 4px;
+        margin-bottom: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 10px;
+    }
+
+    .review .profile {
+        padding: 10px;
+    }
+
+    .review .profile-text {
+        margin-left: 10px;
+    }
+
+    .review .profile-photo img {
+        width: 35px;
+    }
+
+    .review .text {
+        padding: 0 10px 10px 10px;
+    }
+
+    .review .text.small {
+        font-size: 20px;
+    }
+
+    .review .text.large {
+        font-size: 25px;
+    }
+
+    .review .stars {
+        font-size: 14px;
+        padding: 2px 8px;
+        border-radius: 22px;
+    }
+
+    .designs, .products, .love-letters {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+    }
+
+    #product-section {
+        background: #00478F;
+    }
+
+    #product-section article {
+        padding: 2rem;
+    }
+
+    .designs img, .products > div, .love-letters img {
+        width: 30%;
+        height: 30%;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.20);
+    }
+
+    .phones .products > div {
+        width: 22%;
+        height: auto;
+    }
+
+    .phones .designs img {
+        width: 45%;
+        height: 45%;
+    }
+
+    .love-letters img {
+        border-radius: 5px;
+        overflow: hidden;
+        border: 0;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.20);
+        width: 45%;
+    }
+
+    .products img {
+        margin: 0;
+    }
+
+    .products img {
+        width: 100%;
+        height: auto;
+    }
+
+    .cta {
+        padding-bottom: 40px;
+    }
+
+    .cta .button {
+        width: 600px;
+        padding: 0 30px;
+        margin: 20px auto;
+        font-size: 20px;
+        bottom: 30px;
+        left: 100px;
+        height: 56px;
+        line-height: 56px;
+    }
+
+    .cta .later {
+        margin: 8px;
+        font-size: 12px;
+        cursor: pointer;
+    }
+
+    .later-form {
+        width: 500px;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    .later-form label {
+        font-size: 16px;
+    }
+
+    .later-form input[type=text], .later-form input[type=email], .later-form input[type=number] {
+        margin: 10px;
+    }
+
+    .formgroup {
+        margin: 10px;
+    }
+
+    .formgroup > div {
+        margin-right: 10px;
+    }
+
+    .later-form input[type=submit] {
+        margin: 10px;
+    }
+
+    .alert-success {
+        padding: 20px;
+    }
+
+    .more {
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    #social-proofs {
+        display: flex;
+        align-items: stretch;
+        flex-wrap: nowrap;
+        padding: 30px;
+    }
+
+    .social-proof {
+        border-radius: 0;
+        box-shadow: none;
+        flex-basis: 33.33%;
+        flex-grow: 0;
+        border-right: 1px solid #eee;
+        border-bottom: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .social-proof:last-child {
+        border: 0;
+    }
+
+    #facebook-ratings-inner, #google-ratings-inner {
+        padding-bottom: 50px;
+        background-size: 125px 45.75px;
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        text-align: center;
+    }
+
+    #facebook-ratings svg, #google-ratings svg {
+        max-width: 250px;
+        width: 100%;
+        height: auto;
+    }
+
+    #facebook-ratings #rating, #google-ratings #rating {
+        font-size: 35px;
+    }
+
+    #facebook-ratings, #google-ratings {
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: 30px;
+        padding-right: 30px;
+        flex-basis: 33.33%;
+    }
+
+    #audit {
+        padding-top: 0;
+        padding-left: 30px;
+        border-top: none;
+        text-align: center;
+    }
+
+    #audit img {
+        width: 160px;
+        height: auto;
+    }
+
+    #buzzfeed {
+        padding-bottom: 0;
+        padding-right: 30px;
+    }
+
+    #buzzfeed a {
+        font-size: 25px;
+        background-size: 120px 22.6px;
+    }
+
+    #logo-end {
+        margin-top: 50px;
+    }
+
+    footer {
+        margin-bottom: 0;
+    }
+
+    #footer-links {
+        width: 1000px;
+        padding: 0;
+        padding-top: 140px;
+        flex-wrap: nowrap;
+        max-width: 100%;
+    }
+
+    .footer-section {
+        flex: 1;
+        padding-bottom: 0;
+        margin-left: 15px;
+    }
+
+    .footer-section h2 {
+        font-weight: 300;
+    }
+
+    .footer-section ul li {
+        padding: 0;
+    }
+
+    .pre-animate .products > div {
+        opacity: 0;
+    }
+
+    .animate .products > div {
+        animation: fadein 1.5s;
+        animation-fill-mode: both;
+    }
+
+    .animate .products > div:nth-of-type(2) {
+        animation-delay: 0.2s;
+    }
+
+    .animate .products > div:nth-of-type(3) {
+        animation-delay: 0.4s;
+    }
+
+    .animate .products > div:nth-of-type(4) {
+        animation-delay: 0.6s;
+    }
+
+    #info-banner {
+        padding: 5px;
+    }
+
+    #surprise-video-list {
+        padding: 0;
+        margin-top: 40px;
+        display: flex;
+        align-items: stretch;
+        justify-content: space-evenly;
+    }
+
+    .surprise-video {
+        flex-shrink: 1;
+        flex-basis: 30vw;
+        padding: 0;
+        margin-right: 10px;
+        border-bottom: none;
+        flex-direction: column;
+        align-items: stretch;
+        box-shadow: 0px 2px 5px rgba(0,0,0,0.28);
+        overflow: hidden;
+        border-radius: 10px;
+        background: #2c3a68;
+        color: white;
+        cursor: pointer;
+    }
+
+    .surprise-video:last-of-type {
+        border-right: none;
+        margin-right: 0;
+        padding-right: 0;
+    }
+
+    .surprise-video h3 {
+        font-size: 2.2vw;
+        flex-basis: 75%;
+        padding: 0;
+        order: 1;
+    }
+
+    .surprise-video-details {
+        margin: 10px 20px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .surprise-video-details .time {
+        order: 2;
+        flex-basis: 25%;
+        text-align: right;
+        align-self: center;
+    }
+
+    .surprise-video-details p, .surprise-video-details-in-playlist p {
+        font-size: 14px;
+    }
+
+    .surprise-video-thumbnail {
+        width: 30vw;
+        height: 15vw;
+    }
+
+    .surprise-video-thumbnail img {
+        width: 30vw;
+        height: 15vw;
+    }
+
+    .surprise-video-in-playlist {
+        padding: 10px;
+        margin: 0;
+    }
+
+    .surprise-video-in-playlist:first-of-type {
+        padding-top: 10px;
+    }
+
+    .surprise-video-details-in-playlist {
+        display: flex;
+        flex-direction: column;
+        margin: 0 15px;
+    }
+
+    .surprise-video-in-playlist h3 {
+        font-size: 20px;
+        padding: 0;
+    }
+
+    .surprise-video-thumbnail-in-playlist img {
+        width: 25vw;
+        height: 12.5vw;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .surprise-video-thumbnail-in-playlist {
+        width: 25vw;
+        height: 12.5vw;
+    }
+
+    #surprise-video-playlist {
+        position: static;
+        width: 50vw;
+        height: 50vw;
+        background: white;
+        padding-bottom: 0;
+        cursor: pointer;
+    }
+
+    #surprise-video-playlist:after {
+        display: none;
+    }
+
+    .surprise-video-thumbnail .play-button {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-image: url(https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/play-button.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center center;
+    }
+
+    #surprise-videos-overlay {
+        position: fixed;
+        z-index: 10000000000000;
+        background: rgba(0,0,0,0.7);
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    #surprise-videos-overlay.shown {
+        display: flex;
+    }
+
+    #surprise-videos-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: white;
+    }
+
+    #surprise-video {
+        width: 50vw;
+        height: 50vw;
+        position: static;
+        border: none;
+    }
+
+    #surprise-video-close-button {
+        width: 45px;
+        height: 45px;
+        background-size: 40px 40px;
+        top: 20px;
+        right: 20px
+    }
+
+    #surprise-video-close-button-big {
+        text-align: center;
+        height: 60px;
+        line-height: 60px;
+        font-weight: bold;
+        text-transform: uppercase;
+        background: transparent;
+        border: none;
+        color: white;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    #surprise-video, #surprise-video-playlist {
+        box-shadow: 0 0 25px rgba(0,0,0,0.7);
+    }
+
+    .promotion {
+        font-size: 18px;
+        padding: 18px;
+    }
+}
+
+@media (min-width: 1200px) {
+    body, html {
+        min-width: 1200px;
+    }
+
+    section > article {
+        width: 100%;
+    }
+
+    .video-placeholder {
+        width: 1200px;
+        margin: 0 auto;
+    }
+
+    #video-cta {
+        left: 200px;
+    }
+
+    #intro-section article, #faq-section article {
+        width: 800px;
+    }
+
+    section > article {
+        width: 1200px;
+        margin: 0 auto;
+    }
+
+    footer {
+        background-image: url(https://d3j4c7e2o820k1.cloudfront.net/assets/img/header-background.png);
+        background: image-set( url(/assets/img/header-background.png) 1x, url(/assets/img/header-background@2x.png) 2x );
+        background-repeat: repeat-x;
+        background-position: top center;
+        text-align: center;
+        margin-bottom: 100px;
+    }
+
+    #footer-links {
+        width: 1000px;
+        padding-top: 140px;
+        margin: 0 auto 50px auto;
+        display: flex;
+        align-items: flex-start;
+        box-sizing: border-box;
+    }
+
+    .footer-section {
+        flex: 1;
+        text-align: left;
+    }
+
+    .footer-section h1 {
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+
+    .footer-section ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    #footer-links a {
+        color: #717171;
+        font-size: 14px;
+        text-decoration: none;
+    }
+
+    .review {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #title-inspiration-section ul {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #title-inspiration-section ul li {
+        flex-basis: 33%;
+    }
+
+    .surprise-video-thumbnail-in-playlist img {
+        width: 250px;
+        height: 125px;
+    }
+
+    .surprise-video-thumbnail-in-playlist {
+        width: 250px;
+        height: 125px;
+    }
+
+    #surprise-video-playlist {
+        width: 500px;
+        height: 500px;
+    }
+
+    #surprise-video {
+        width: 500px;
+        height: 500px;
+    }
+
+    .surprise-video {
+        flex-shrink: 1;
+        flex-basis: 350px;
+    }
+
+    .surprise-video-thumbnail {
+        width: 350px;
+        height: 175px;
+    }
+
+    .surprise-video-thumbnail img {
+        width: 350px;
+        height: 175px;
+    }
+
+    .surprise-video h3 {
+        font-size: 20px;
+    }
+}
+
+body.locale-fr .cta .button {
+    font-size: 4.2vw;
+}
+
+body.locale-it .cta .button {
+    font-size: 4.2vw;
+}
+
+body.locale-de .cta .button {
+    font-size: 4.2vw;
+}
+
+body.locale-hu .cta .button {
+    font-size: 4.2vw;
+}
+
+@media (min-width: 768px) {
+    body.locale-fr .cta .button {
+        font-size: 20px;
+    }
+
+    body.locale-it .cta .button {
+        font-size: 20px;
+    }
+
+    body.locale-de .cta .button {
+        font-size: 20px;
+    }
+
+    body.locale-hu .cta .button {
+        font-size: 20px;
+    }
+
+    body.locale-de #video-cta {
+        width: 315px;
+    }
+
+    body.locale-ja #video-cta {
+        width: 365px;
+    }
+}
+
+.only-chat {
+    display: none;
+}
+
+.only-chat.shown {
+    display: block;
+}
+
+
+    </style>
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+    <link rel="canonical" href="https://www.underluckystars.com/en/birthday" />
+
+    <link rel="prefetch" href="/en/designer">
+    <link rel="next" href="/en/designer">
+    <link rel="prerender" href="/en/designer">
+
+            <link rel="prefetch" href="https://d3j4c7e2o820k1.cloudfront.net/css/454a62b-8417ad6.css" />
+                <link rel="prefetch" href="https://d3j4c7e2o820k1.cloudfront.net/js/155db98-4f488fc.js" />
+    
+    <meta name="theme-color" content="#ffffff">
+    <meta name="p:domain_verify" content="a8500106e5f0a9916dbba166430c68be"/>
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@underluckystars">
+    <meta name="twitter:title" content="Under Lucky Stars">
+    <meta name="twitter:description" content="Birthdays are special, no matter the number - 0th or 100th. Wish someone happy birthday with a star map of the sky above them when they were born.">
+    <meta name="twitter:image:src" content="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex29.jpg">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Under Lucky Stars" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://www.underluckystars.com/en/birthday" />
+    <meta property="og:image" content="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex29.jpg" />
+    <meta property="og:description" content="Birthdays are special, no matter the number - 0th or 100th. Wish someone happy birthday with a star map of the sky above them when they were born." />
+    <meta property="og:site_name" content="Under Lucky Stars" />
+
+                <link rel="alternate" hreflang="es" href="https://www.underluckystars.com/es">
+                <link rel="alternate" hreflang="de" href="https://www.underluckystars.com/de">
+                <link rel="alternate" hreflang="fr" href="https://www.underluckystars.com/fr">
+                <link rel="alternate" hreflang="it" href="https://www.underluckystars.com/it">
+                <link rel="alternate" hreflang="pt" href="https://www.underluckystars.com/pt">
+                <link rel="alternate" hreflang="ja" href="https://www.underluckystars.com/ja">
+                <link rel="alternate" hreflang="hu" href="https://www.underluckystars.com/hu">
+    
+    
+
+<!-- Global site tag (gtag.js) - AdWords: 867529107 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-867529107"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-867529107', {
+        allow_enhanced_conversions:true
+    });
+    gtag('config', 'G-LSBK82Y0LK', {
+	    allow_enhanced_conversions: true,
+	    anonymize_ip: true,
+	    send_page_view: false
+            });
+
+    
+    gtag('set', 'linker', {
+        'domains': [
+            'underluckystars.com',
+            'underluckystars.de',
+            'underluckystars.fr',
+            'underluckystars.es',
+            'underluckystars.hu',
+            'underluckystars.jp',
+            'underluckystars.pt',
+            'underluckystars.it'
+        ]
+    });
+</script>
+
+<script src="https://www.googleoptimize.com/optimize.js?id=GTM-WD5DG8M"></script>
+
+    <!-- Facebook Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+            document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', '782857011853426', []);
+        fbq('init', '985877981805439', []);
+        fbq('init', '1226872867520720', []);
+    
+    var fbPageViewEventId = Math.random().toString(36).substring(7);
+    fbq('track', 'PageView', {}, {eventID: fbPageViewEventId});
+
+    (function () {
+        var request = new XMLHttpRequest();
+        var eventFormData = new FormData();
+        eventFormData.append('eventId', fbPageViewEventId);
+        request.open('POST', "\/en\/track-fb-pv", true);
+        request.send(eventFormData);
+    }());
+
+    </script>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+<script>
+    (function() {
+        if (window.URL && window.URLSearchParams) {
+            var url = new URL(window.location);
+            var searchParams = new URLSearchParams(url.search);
+
+            var campaign = searchParams.get('utm_campaign');
+            var source = searchParams.get('utm_source');
+            var medium = searchParams.get('utm_medium');
+            var content = searchParams.get('utm_content');
+            var term = searchParams.get('utm_term');
+
+            if (campaign) {
+                fbq('track', 'ViewContent', {'content_name': 'campaign_' + campaign.replace(' ', '_')});
+            }
+            if (source) {
+                fbq('track', 'ViewContent', {'content_name': 'source_' + source.replace(' ', '_')});
+            }
+            if (medium) {
+                fbq('track', 'ViewContent', {'content_name': 'medium_' + medium.replace(' ', '_')});
+            }
+            if (content) {
+                fbq('track', 'ViewContent', {'content_name': 'content_' + content.replace(' ', '_')});
+            }
+            if (term) {
+                fbq('track', 'ViewContent', {'content_name': 'term_' + term.replace(' ', '_')});
+            }
+        }
+    }());
+</script>
+
+
+    <!-- Reddit Conversion Pixel -->
+<script>
+    !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
+    rdt('init','t2_1ico7y9c');
+    rdt('track', 'PageVisit');
+</script>
+<!-- DO NOT MODIFY -->
+<!-- End Reddit Conversion Pixel -->
+
+
+    <script type='text/javascript'>
+    (function(win, doc, sdk_url){
+        if(win.snaptr) return;
+        var tr=win.snaptr=function(){
+            tr.handleRequest? tr.handleRequest.apply(tr, arguments):tr.queue.push(arguments);
+        };
+        tr.queue = [];
+        var s='script';
+        var new_script_section=doc.createElement(s);
+        new_script_section.async=!0;
+        new_script_section.src=sdk_url;
+        var insert_pos=doc.getElementsByTagName(s)[0];
+        insert_pos.parentNode.insertBefore(new_script_section, insert_pos);
+    })(window, document, 'https://sc-static.net/scevent.min.js');
+
+    snaptr('init','eda2b568-c489-4298-9afc-850b0d216edd', []);
+    snaptr('track','PAGE_VIEW');
+</script>
+
+
+    <script>
+    !function (w, d, t) {
+        w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++
+        )ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=i+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+
+        ttq.load('BVRL17JP3MGBRD7S1DR0');
+
+                ttq.enableCookie();
+        ttq.page();
+
+        var ttPageViewEventId = Math.random().toString(36).substring(7);
+        ttq.track('Browse', {}, {event_id: ttPageViewEventId});
+
+        (function () {
+            var request = new XMLHttpRequest();
+            var eventFormData = new FormData();
+            eventFormData.append('eventId', ttPageViewEventId);
+            request.open('POST', "\/en\/track-tt-pv", true);
+            request.send(eventFormData);
+        }());
+    }(window, document, 'ttq');
+</script>
+
+
+    <!-- Pinterest Tag -->
+<script>
+    !function(e){if(!window.pintrk){window.pintrk = function () {
+        window.pintrk.queue.push(Array.prototype.slice.call(arguments))};var
+        n=window.pintrk;n.queue=[],n.version="3.0";var
+        t=document.createElement("script");t.async=!0,t.src=e;var
+        r=document.getElementsByTagName("script")[0];
+        r.parentNode.insertBefore(t,r)}}("https://s.pinimg.com/ct/core.js");
+    pintrk('load', '2612474376513', {em: ""});
+    pintrk('page');
+
+    pintrk('track', 'pagevisit');
+</script>
+<noscript>
+    <img height="1" width="1" style="display:none;" alt=""
+         src="https://ct.pinterest.com/v3/?event=init&tid=2612474376513&pd[em]=&noscript=1" />
+</noscript>
+
+
+    <!-- Twitter universal website tag code -->
+<script>
+    !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+    },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
+        a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+    // Insert Twitter Pixel ID and Standard Event data below
+    twq('init','o3hl0');
+    twq('track','PageView');
+</script>
+<!-- End Twitter universal website tag code -->
+
+
+    <script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"17356527"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script>
+
+
+    <!-- DO NOT MODIFY -->
+<!-- Quora Pixel Code (JS Helper) -->
+<script>
+    !function(q,e,v,n,t,s){if(q.qp) return; n=q.qp=function(){n.qp?n.qp.apply(n,arguments):n.queue.push(arguments);}; n.queue=[];t=document.createElement(e);t.async=!0;t.src=v; s=document.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);}(window, 'script', 'https://a.quora.com/qevents.js');
+            qp('init', '8279f1b0ba62495c83ab658ed9d2024e');
+        qp('track', 'ViewContent');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://q.quora.com/_/ad/8279f1b0ba62495c83ab658ed9d2024e/pixel?tag=ViewContent&noscript=1"/></noscript>
+<!-- End of Quora Pixel Code -->
+
+
+    <script>
+    (function(path, sessionId, userId, window) {
+        if (window.smtracker) return;
+
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        var loaded = false;
+
+        script.onload = function () {
+            if (loaded) {
+                return;
+            }
+
+            script.onload = null;
+            loaded = true;
+
+            window.smtracker.ready(sessionId, userId);
+        }
+
+        script.async = true;
+        script.src = path;
+        head.parentNode.insertBefore(script, head);
+
+        window.smtracker = {
+            track: function(eventName, eventData) {
+                window.smtracker._trackQueue.push([eventName, eventData]);
+            },
+            trigger: function(callbackName) {
+                window.smtracker._triggerQueue.push(callbackName);
+            },
+            configureCallbacks: function(callbacks) {
+                window.smtracker._callbacks = callbacks;
+            },
+            _trackQueue: [],
+            _triggerQueue: [],
+            _callbacks: {}
+        };
+    }('https://d3s7mlfxj3lpl1.cloudfront.net/sugarmountain-3.js', 'a99cf793-b31f-4424-b30d-8cb6c9556f90', 'a99cf793-b31f-4424-b30d-8cb6c9556f90', window));
+
+    // Don't forget to manually trigger in conversion page!
+    smtracker.configureCallbacks({
+        'fb-conversion-0.1': {threshold: 0.1, callback: function() {
+                var fbPageViewEventId = Math.random().toString(36).substring(7);
+                window.fbq && fbq('trackCustom', 'Lead01', {}, {eventID: fbPageViewEventId});
+
+                (function () {
+                    var request = new XMLHttpRequest();
+                    var eventFormData = new FormData();
+                    eventFormData.append('eventId', fbPageViewEventId);
+                    eventFormData.append('eventName', 'Lead01');
+                    request.open('POST', window.uls.ajaxPrefix + '/track-fb-ce', true);
+                    request.send(eventFormData);
+                }());
+            }
+        },
+        'fb-conversion-0.5': {threshold: 0.5, callback: function() {
+                var fbEventId = Math.random().toString(36).substring(7);
+                window.fbq && fbq('trackCustom', 'Lead05', {}, {eventID: fbEventId});
+
+                (function () {
+                    var request = new XMLHttpRequest();
+                    var eventFormData = new FormData();
+                    eventFormData.append('eventId', fbEventId);
+                    eventFormData.append('eventName', 'Lead05');
+                    request.open('POST', window.uls.ajaxPrefix + '/track-fb-ce', true);
+                    request.send(eventFormData);
+                }());
+
+                var ttEventId = Math.random().toString(36).substring(7);
+
+                window.ttq && ttq.track('ClickButton', {}, {event_id: ttEventId});
+
+                window.snaptr && snaptr('track','CUSTOM_EVENT_1');
+            }
+        }
+    });
+</script>
+
+</head>
+<body class=" locale-en">
+
+<script>
+	window.uls = window.uls || {};
+	window.uls.ajaxPrefix = '/en';
+	window.uls.trackingId = 'G-LSBK82Y0LK';
+</script>
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "Organization",
+    "name" : "Under Lucky Stars",
+    "url" : "https://www.underluckystars.com",
+    "sameAs" : [
+       "https://twitter.com/underluckystars",
+       "https://www.facebook.com/underluckystars",
+       "http://www.yelp.com/biz/your-business-url-from-yelp",
+       "https://www.instagram.com/underluckystars/?hl=en"
+    ]
+}
+</script>
+
+
+    <div id="top-banner">
+            <div class="promotion">
+        ⭐️ Promotion! <strong>25% off</strong> on your second item! ⭐️
+    </div>
+
+    </div>
+
+
+<div class="wrapper">
+
+    
+        <div class="video-container">
+        
+    <video id="mobile-video" muted autoplay loop poster="https://d3j4c7e2o820k1.cloudfront.net/assets/video/uls-baby-web.jpg" defaultMuted playsinline>
+        <source src="https://d3j4c7e2o820k1.cloudfront.net/assets/video/uls-baby-web.mp4" type="video/mp4" media="screen and (max-width : 767px)">
+        <source src="https://d3j4c7e2o820k1.cloudfront.net/assets/video/uls-baby-web.webm" type="video/webm" media="screen and (max-width : 767px)">
+    </video>
+
+    <div id="desktop-video-container">
+        <video id="desktop-video" muted autoplay loop poster="https://d3j4c7e2o820k1.cloudfront.net/assets/video/uls-baby-web-wider.jpg" defaultMuted playsinline>
+            <source src="https://d3j4c7e2o820k1.cloudfront.net/assets/video/uls-baby-web-wider.mp4" type="video/mp4" media="screen and (min-width : 768px)">
+            <source src="https://d3j4c7e2o820k1.cloudfront.net/assets/video/uls-baby-web-wider.webm" type="video/webm" media="screen and (min-width : 768px)">
+        </video>
+    </div>
+
+
+        <img id="video-logo" src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/logo-new.png" srcset="https://d3j4c7e2o820k1.cloudfront.net/assets/img/logo-new@2x.png 2x" alt="Under Lucky Stars Logo">
+    </div>
+    <div class="video-placeholder">
+        <a href="#" id="video-cta" class="reveal-bottom-cta-after">
+            Design Yours Now        </a>
+    </div>
+    
+    <div id="post-video-content">
+        <section id="intro-section">
+            <article>
+                <h1>
+                        Star Map of the Sky When a Loved One was Born                </h1>
+                    <h2>
+        We are Under Lucky Stars.    </h2>
+    <p>
+        We make beautifully designed star maps that show the unique alignment of the stars in a place and time chosen by you.    </p>
+    <p>
+        Every wondered which constellations witnessed the birth of your baby, your friend or yourself? We can
+ show it to you and make it into a gorgeous, custom-made star map art print.
+ Looking for a special birthday gift, or present for a baby shower? You found it.    </p>
+            </article>
+        </section>
+
+        <section id="product-section" class="animate-when-scrolled">
+            <article>
+            <div class="products"
+                 data-cycle-speed="1000"
+                 data-cycle-timeout="4000"
+                 data-cycle-carousel-visible="1"
+                 data-cycle-slides="div"
+                 data-cycle-slide-active-class="product-active"
+            >
+                    <div>
+        <a href="#">
+            <img src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/product1birthday.png" alt="Under Lucky Stars Birthday Star Map" />
+        </a>
+    </div>
+    <div>
+        <a href="#">
+            <img src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/product2birthday.png" alt="Under Lucky Stars Birthday Star Map" />
+        </a>
+    </div>
+    <div>
+        <a href="#">
+            <img src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/product3birthday.png" alt="Under Lucky Stars Birthday Star Map" />
+        </a>
+    </div>
+            </div>
+            </article>
+        </section>
+
+        <section id="social-proofs-section">
+            <article>
+                <div id="social-proofs">
+                    <div id="buzzfeed" class="social-proof ">
+                        <a href="#" target="_blank">
+                            “The perfect way to show just how much you truly care.”                        </a>
+                    </div>
+
+                    <div id="facebook-ratings" class="social-proof ">
+
+                        <div id="facebook-ratings-inner">
+                            <div id="rating">4.9</div>
+
+                            <svg viewBox="0 0 220 50" version="1.1" xmlns="#" xmlns:xlink="#">
+                                <defs>
+                                    <path d="M18.704976,26.5999995 L7.53705619,34.3713229 L11.4769469,21.348529 L0.634902171,13.1286771 L14.2378083,12.8514712 L18.704976,0 L23.1721436,12.8514712 L36.7750498,13.1286771 L25.9330051,21.348529 L29.8728958,34.3713229 L18.704976,26.5999995 Z M61.153732,26.5999995 L49.9858122,34.3713229 L53.9257029,21.348529 L43.0836582,13.1286771 L56.6865643,12.8514712 L61.153732,0 L65.6208996,12.8514712 L79.2238058,13.1286771 L68.3817611,21.348529 L72.3216518,34.3713229 L61.153732,26.5999995 Z M103.602488,26.5999995 L92.4345682,34.3713229 L96.3744589,21.348529 L85.5324142,13.1286771 L99.1353203,12.8514712 L103.602488,0 L108.069656,12.8514712 L121.672562,13.1286771 L110.830517,21.348529 L114.770408,34.3713229 L103.602488,26.5999995 Z M146.051244,26.5999995 L134.883324,34.3713229 L138.823215,21.348529 L127.98117,13.1286771 L141.584076,12.8514712 L146.051244,0 L150.518412,12.8514712 L164.121318,13.1286771 L153.279273,21.348529 L157.219164,34.3713229 L146.051244,26.5999995 Z M188.5,26.5999995 L177.33208,34.3713229 L181.271971,21.348529 L170.429926,13.1286771 L184.032832,12.8514712 L188.5,0 L192.967168,12.8514712 L206.570074,13.1286771 L195.728029,21.348529 L199.66792,34.3713229 L188.5,26.5999995 Z" id="path-1"></path>
+                                </defs>
+                                <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="Group" transform="translate(5.500000, 8.000000)" fill="#D8D8D8">
+                                        <polygon id="Star" points="19.204976 26.5999995 8.03705619 34.3713229 11.9769469 21.348529 1.13490217 13.1286771 14.7378083 12.8514712 19.204976 0 23.6721436 12.8514712 37.2750498 13.1286771 26.4330051 21.348529 30.3728958 34.3713229"></polygon>
+                                        <polygon id="Star" points="61.653732 26.5999995 50.4858122 34.3713229 54.4257029 21.348529 43.5836582 13.1286771 57.1865643 12.8514712 61.653732 0 66.1208996 12.8514712 79.7238058 13.1286771 68.8817611 21.348529 72.8216518 34.3713229"></polygon>
+                                        <polygon id="Star" points="104.102488 26.5999995 92.9345682 34.3713229 96.8744589 21.348529 86.0324142 13.1286771 99.6353203 12.8514712 104.102488 0 108.569656 12.8514712 122.172562 13.1286771 111.330517 21.348529 115.270408 34.3713229"></polygon>
+                                        <polygon id="Star" points="146.551244 26.5999995 135.383324 34.3713229 139.323215 21.348529 128.48117 13.1286771 142.084076 12.8514712 146.551244 0 151.018412 12.8514712 164.621318 13.1286771 153.779273 21.348529 157.719164 34.3713229"></polygon>
+                                        <polygon id="Star" points="189 26.5999995 177.83208 34.3713229 181.771971 21.348529 170.929926 13.1286771 184.532832 12.8514712 189 0 193.467168 12.8514712 207.070074 13.1286771 196.228029 21.348529 200.16792 34.3713229"></polygon>
+                                    </g>
+                                    <g id="Rectangle" transform="translate(6.000000, 8.000000)">
+                                        <mask id="mask-2" fill="white">
+                                            <use xlink:href="#path-1"></use>
+                                        </mask>
+                                        <use id="Mask" fill="#D8D8D8" xlink:href="#"></use>
+                                        <rect fill="#4469B0" mask="url(#mask-2)" x="1.02999878" y="-3.82487531" width="201.82120196" height="41.6497506"></rect>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+
+                    
+                    <div id="google-ratings" class="social-proof ">
+
+                        <div id="google-ratings-inner">
+                            <div id="rating">4.8</div>
+
+                            <svg viewBox="0 0 220 50" version="1.1" xmlns="#" xmlns:xlink="#">
+                                <defs>
+                                    <path d="M18.704976,26.5999995 L7.53705619,34.3713229 L11.4769469,21.348529 L0.634902171,13.1286771 L14.2378083,12.8514712 L18.704976,0 L23.1721436,12.8514712 L36.7750498,13.1286771 L25.9330051,21.348529 L29.8728958,34.3713229 L18.704976,26.5999995 Z M61.153732,26.5999995 L49.9858122,34.3713229 L53.9257029,21.348529 L43.0836582,13.1286771 L56.6865643,12.8514712 L61.153732,0 L65.6208996,12.8514712 L79.2238058,13.1286771 L68.3817611,21.348529 L72.3216518,34.3713229 L61.153732,26.5999995 Z M103.602488,26.5999995 L92.4345682,34.3713229 L96.3744589,21.348529 L85.5324142,13.1286771 L99.1353203,12.8514712 L103.602488,0 L108.069656,12.8514712 L121.672562,13.1286771 L110.830517,21.348529 L114.770408,34.3713229 L103.602488,26.5999995 Z M146.051244,26.5999995 L134.883324,34.3713229 L138.823215,21.348529 L127.98117,13.1286771 L141.584076,12.8514712 L146.051244,0 L150.518412,12.8514712 L164.121318,13.1286771 L153.279273,21.348529 L157.219164,34.3713229 L146.051244,26.5999995 Z M188.5,26.5999995 L177.33208,34.3713229 L181.271971,21.348529 L170.429926,13.1286771 L184.032832,12.8514712 L188.5,0 L192.967168,12.8514712 L206.570074,13.1286771 L195.728029,21.348529 L199.66792,34.3713229 L188.5,26.5999995 Z" id="path-1"></path>
+                                </defs>
+                                <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="Group" transform="translate(5.500000, 8.000000)" fill="#D8D8D8">
+                                        <polygon id="Star" points="19.204976 26.5999995 8.03705619 34.3713229 11.9769469 21.348529 1.13490217 13.1286771 14.7378083 12.8514712 19.204976 0 23.6721436 12.8514712 37.2750498 13.1286771 26.4330051 21.348529 30.3728958 34.3713229"></polygon>
+                                        <polygon id="Star" points="61.653732 26.5999995 50.4858122 34.3713229 54.4257029 21.348529 43.5836582 13.1286771 57.1865643 12.8514712 61.653732 0 66.1208996 12.8514712 79.7238058 13.1286771 68.8817611 21.348529 72.8216518 34.3713229"></polygon>
+                                        <polygon id="Star" points="104.102488 26.5999995 92.9345682 34.3713229 96.8744589 21.348529 86.0324142 13.1286771 99.6353203 12.8514712 104.102488 0 108.569656 12.8514712 122.172562 13.1286771 111.330517 21.348529 115.270408 34.3713229"></polygon>
+                                        <polygon id="Star" points="146.551244 26.5999995 135.383324 34.3713229 139.323215 21.348529 128.48117 13.1286771 142.084076 12.8514712 146.551244 0 151.018412 12.8514712 164.621318 13.1286771 153.779273 21.348529 157.719164 34.3713229"></polygon>
+                                        <polygon id="Star" points="189 26.5999995 177.83208 34.3713229 181.771971 21.348529 170.929926 13.1286771 184.532832 12.8514712 189 0 193.467168 12.8514712 207.070074 13.1286771 196.228029 21.348529 200.16792 34.3713229"></polygon>
+                                    </g>
+                                    <g id="Rectangle" transform="translate(6.000000, 8.000000)">
+                                        <mask id="mask-2" fill="white">
+                                            <use xlink:href="#path-1"></use>
+                                        </mask>
+                                        <use id="Mask" fill="#D8D8D8" xlink:href="#path-1"></use>
+                                        <rect fill="#E76F17" mask="url(#mask-2)" x="1.02999878" y="-3.82487531" width="197.70240192" height="41.6497506"></rect>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div id="audit" class="social-proof animate-when-scrolled">
+                        <a href="/en/astronomically-verified">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/verified-small-transparent.png" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Astronomically Verified">
+                            <div>Independently Astronomically Verified - Avoid Fakes!</div>
+                        </a>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        
+                                    
+                <section id="surprise-videos-section">
+                    <article>
+                        <h2>Surprise Videos</h2>
+                        <p class="centered">Watch sweet & real videos of unwrapping surprise star maps by happy star map owners.</p>
+
+                        <div id="surprise-video-list">
+                                                            <div class="surprise-video" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/01.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/01t.jpg" data-tracking-id="video-01-home">
+                                    <div class="surprise-video-thumbnail">
+                                        <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/01.jpg" alt="Keifer's video of opening an Under Lucky Stars surprise star map"  />
+                                        <div class="play-button"></div>
+                                    </div>
+                                    <div class="surprise-video-details">
+                                        <h3>Keifer's Video <span style="color: red">&hearts;</span></h3>
+                                        <p class="time">00:42</p>
+                                    </div>
+                                </div>
+                                                            <div class="surprise-video" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/02.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/02t.jpg" data-tracking-id="video-02-home">
+                                    <div class="surprise-video-thumbnail">
+                                        <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/02.jpg" alt="Hank's video of opening an Under Lucky Stars surprise star map"  />
+                                        <div class="play-button"></div>
+                                    </div>
+                                    <div class="surprise-video-details">
+                                        <h3>Hank's Video <span style="color: red">&hearts;</span></h3>
+                                        <p class="time">00:51</p>
+                                    </div>
+                                </div>
+                                                            <div class="surprise-video" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/03.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/03t.jpg" data-tracking-id="video-03-home">
+                                    <div class="surprise-video-thumbnail">
+                                        <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/03.jpg" alt="Isaiah's video of opening an Under Lucky Stars surprise star map"  />
+                                        <div class="play-button"></div>
+                                    </div>
+                                    <div class="surprise-video-details">
+                                        <h3>Isaiah's Video <span style="color: red">&hearts;</span></h3>
+                                        <p class="time">00:31</p>
+                                    </div>
+                                </div>
+                                                    </div>
+
+                    </article>
+                </section>
+                    
+        <section id="examples-section" class="animate-when-scrolled">
+            <h2>Some Smaller and Bigger Star Map Children</h2>
+
+            
+            
+            
+            <div class="examples">
+                
+    
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex29.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner yevka_kobenko" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av29.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by yevka_kobenko" />
+                        </div>
+                        <p>
+                            <strong>yevka_kobenko</strong>
+                            
+                        </p>
+                    </div>
+                </div>
+            
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex84.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner familiadcookies" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av84.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by familiadcookies" />
+                        </div>
+                        <p>
+                            <strong>familiadcookies</strong>
+                            
+                        </p>
+                    </div>
+                </div>
+            
+
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex47.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner brittanymang20" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av47.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by brittanymang20" />
+                        </div>
+                        <p>
+                            <strong>brittanymang20</strong>
+                            I love it! It's the perfect gift!
+                        </p>
+                    </div>
+                </div>
+            
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex35.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner sheridaningalls" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av35.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by sheridaningalls" />
+                        </div>
+                        <p>
+                            <strong>sheridaningalls</strong>
+                            
+                        </p>
+                    </div>
+                </div>
+            
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex51.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner lumi_blose" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av51.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by lumi_blose" />
+                        </div>
+                        <p>
+                            <strong>lumi_blose</strong>
+                            I thought about making a special gift, not just a simple object that you use and then you get tired, but rather something special, which lasts forever...
+                        </p>
+                    </div>
+                </div>
+            
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex61.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner kissmedarlingxo" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av61.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by kissmedarlingxo" />
+                        </div>
+                        <p>
+                            <strong>kissmedarlingxo</strong>
+                            
+                        </p>
+                    </div>
+                </div>
+            
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex22.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner francoalvarezcrestana" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av22.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by francoalvarezcrestana" />
+                        </div>
+                        <p>
+                            <strong>francoalvarezcrestana</strong>
+                            💪👌👌️
+                        </p>
+                    </div>
+                </div>
+            
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex68.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner mz.interior" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av68.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by mz.interior" />
+                        </div>
+                        <p>
+                            <strong>mz.interior</strong>
+                            
+                        </p>
+                    </div>
+                </div>
+            
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex59.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner joanabeato22" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av59.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by joanabeato22" />
+                        </div>
+                        <p>
+                            <strong>joanabeato22</strong>
+                            
+                        </p>
+                    </div>
+                </div>
+            
+
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex64.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner mrs.asparks" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av64.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by mrs.asparks" />
+                        </div>
+                        <p>
+                            <strong>mrs.asparks</strong>
+                            
+                        </p>
+                    </div>
+                </div>
+            
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex66.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner weliveinthismoment" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av66.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by weliveinthismoment" />
+                        </div>
+                        <p>
+                            <strong>weliveinthismoment</strong>
+                            One of the greatest things you could have framed is something near and dear to your heart. A reminder of a special moment where the stars were aligned beautifully for you.
+                        </p>
+                    </div>
+                </div>
+            
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex3.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner celeste_wright" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av3.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by celeste_wright" />
+                        </div>
+                        <p>
+                            <strong>celeste_wright</strong>
+                            It's gorgeous!!!! I love it already. It's a star map of what the stars looked like the minute Lila was born above the hospital she was born in. &#x1F498;
+                        </p>
+                    </div>
+                </div>
+            
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex44.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner mama.von.leo" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av44.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by mama.von.leo" />
+                        </div>
+                        <p>
+                            <strong>mama.von.leo</strong>
+                            
+                        </p>
+                    </div>
+                </div>
+            
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex85.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner thuttigram" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av85.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by thuttigram" />
+                        </div>
+                        <p>
+                            <strong>thuttigram</strong>
+                            
+                        </p>
+                    </div>
+                </div>
+            
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex56.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner liz_kamarul" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av56.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by liz_kamarul" />
+                        </div>
+                        <p>
+                            <strong>liz_kamarul</strong>
+                            
+                        </p>
+                    </div>
+                </div>
+            
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex25.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner merijn.yth" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av25.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by merijn.yth" />
+                        </div>
+                        <p>
+                            <strong>merijn.yth</strong>
+                            
+                        </p>
+                    </div>
+                </div>
+            
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex86.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner maracalli" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av86.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by maracalli" />
+                        </div>
+                        <p>
+                            <strong>maracalli</strong>
+                            
+                        </p>
+                    </div>
+                </div>
+            
+
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex10.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner prettybudgettips" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av10.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by prettybudgettips" />
+                        </div>
+                        <p>
+                            <strong>prettybudgettips</strong>
+                            I love stars and all products with stars! 💫
+                        </p>
+                    </div>
+                </div>
+            
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex87.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner theworstisyetocome" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av87.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by theworstisyetocome" />
+                        </div>
+                        <p>
+                            <strong>theworstisyetocome</strong>
+                            
+                        </p>
+                    </div>
+                </div>
+            
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex2.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner piiatuuli" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av2.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by piiatuuli" />
+                        </div>
+                        <p>
+                            <strong>piiatuuli</strong>
+                            Amazing
+                        </p>
+                    </div>
+                </div>
+            
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex15.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner irmadedusic" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av15.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by irmadedusic" />
+                        </div>
+                        <p>
+                            <strong>irmadedusic</strong>
+                            
+                        </p>
+                    </div>
+                </div>
+            
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex31.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner mylifebylexi" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av31.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by mylifebylexi" />
+                        </div>
+                        <p>
+                            <strong>mylifebylexi</strong>
+                            
+                        </p>
+                    </div>
+                </div>
+            
+
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex53.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner k4ms" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av53.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by k4ms" />
+                        </div>
+                        <p>
+                            <strong>k4ms</strong>
+                            
+                        </p>
+                    </div>
+                </div>
+            
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex36.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner manuelaleguizamon" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av36.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by manuelaleguizamon" />
+                        </div>
+                        <p>
+                            <strong>manuelaleguizamon</strong>
+                            
+                        </p>
+                    </div>
+                </div>
+            
+
+                    <div class="example ">
+                    <div class="image">
+                        <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/ex62.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner wranglingtheles" />
+                    </div>
+                    <div class="comments">
+                        <div class="profile-photo">
+                            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/av62.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map by wranglingtheles" />
+                        </div>
+                        <p>
+                            <strong>wranglingtheles</strong>
+                            
+                        </p>
+                    </div>
+                </div>
+            
+
+
+                <div class="insta-more">
+                    <a href="#" target="_blank">More on our Instagram</a>
+                </div>
+
+                <div class="padding"></div>
+
+            </div>
+
+            <div class="example-paginator" id="example-paginator-left"></div>
+            <div class="example-paginator" id="example-paginator-right"></div>
+
+        </section>
+
+        <section id="designs-section">
+            <article>
+                <a name="designs"></a>
+                <h2>Designs</h2>
+                <p class="centered">
+                    Choose your favorite design, add custom title and footnote.                </p>
+
+                <div class="designs">
+                                            <a href="#">
+                            <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/d1.png" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map, Blue and White" />
+                        </a>
+                        <a href="#">
+                            <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/d2.png" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map, White and Black" />
+                        </a>
+                        <a href="#">
+                            <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/d3.png" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map, Black and White" />
+                        </a>
+                        <a href="#">
+                            <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/d15.png" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map, Red and White" />
+                        </a>
+                        <a href="#">
+                            <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/d4.png" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map, Blue and White, Circled" />
+                        </a>
+                        <a href="#">
+                            <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/d16.png" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map, Black and White, Circled" />
+                        </a>
+                        <a href="#">
+                            <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/d5.png" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map, Black and White, Split" />
+                        </a>
+                        <a href="#">
+                            <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/d11.png" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map, Heart White and Black" />
+                        </a>
+                        <a href="#">
+                            <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/d12.png" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map, Heart Black and White" />
+                        </a>
+                        <a href="#">
+                            <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/d13.png" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map, Anatomical Heart White and Black" />
+                        </a>
+                        <a href="#">
+                            <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/d14.png" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map, Moon" />
+                        </a>
+                        <a href="#">
+                            <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/d17.png" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Under Lucky Stars Star Map, Galaxy" />
+                        </a>
+                                    </div>
+            </article>
+        </section>
+
+        <section id="influencer-video-section" class='tysontest'>
+            <article>
+                <a name="science"></a>
+                <h2>Science</h2>
+                <p class="centered">Still confused? Let legendary astrophysicist Dr Neil deGrasse Tyson, director of the Hayden Planetarium in New York City explain Under Lucky Stars in this super intriguing video with comedian Chuck Nice.</p>
+
+                <div id="influencer-video-embed">
+                    <video poster="https://d1tcpqtzfohdid.cloudfront.net/video/neil-degrasse-tyson-with-under-lucky-stars.jpg" controls preload="metadata">
+                        <source src="https://d1tcpqtzfohdid.cloudfront.net/video/neil-degrasse-tyson-with-under-lucky-stars.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+            </article>
+        </section>
+        <script>
+            (function() {
+                var seeked = false;
+                var playedAlready = false;
+                var dataLoadedAlready = false;
+
+                var video = document.querySelector('#influencer-video-embed video');
+
+                function attemptSeek()
+                {
+                    if (seeked) {
+                        return;
+                    }
+                    if (dataLoadedAlready && playedAlready) {
+                        video.currentTime = 264;
+                        seeked = true;
+                    }
+                }
+
+                video.addEventListener('play', function(event) {
+                    if (!playedAlready) {
+                        playedAlready = true;
+                        gtag('event', 'play-influencer-video', { event_category: 'landing' });
+                    }
+                    attemptSeek();
+                });
+
+                video.addEventListener('loadeddata', function(event) {
+                    dataLoadedAlready = true;
+                    attemptSeek();
+                });
+            }())
+
+
+        </script>
+
+                <section id="reviews-section">
+            <article>
+                <h2>People Say</h2>
+
+                
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Product",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "1918",
+    "bestRating": "5"
+  },
+  "description": "Star map of the happiest moments of your life",
+  "name": "Personalized Star Maps",
+  "image": "https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/product1new.png",
+  "brand": "Under Lucky Stars",
+  "sku": "12_16_map",
+  "mpn": "12_16_map",
+  "offers": {
+    "@type": "Offer",
+    "availability": "http://schema.org/InStock",
+    "price": "45",
+    "priceCurrency": "USD",
+    "url": "https\u003A\/\/www.underluckystars.com\/en\/",
+    "priceValidUntil": "2023\u002D08\u002D09"
+  },
+  "review": [
+  
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Belle\u0020Thompson",
+        "image": "https\u003A\/\/d1tcpqtzfohdid.cloudfront.net\/reviewphotos\/d3ef88cbd7456032302abe9808b92ec6.jpg"
+      },
+      "datePublished": "2022-03-07",
+      "description": "Highly\u0020recommend,\u0020this\u0020was\u0020a\u0020gift\u0020for\u0020our\u0020mother\u0020and\u0020she\u0020loved\u0020it",
+      "reviewRating": {
+        "@type": "Rating",
+        "bestRating": "5",
+        "ratingValue": "5",
+        "worstRating": "1"
+      }
+    },
+  
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Liam\u0020O\u0027Rourke",
+        "image": "https\u003A\/\/d1tcpqtzfohdid.cloudfront.net\/reviewphotos\/fa6c7c4adcca08634dd7b76c5a55e066.jpg"
+      },
+      "datePublished": "2022-03-01",
+      "description": "I\u0020got\u0020a\u0020map\u0020of\u0020our\u0020wedding\u0020day\u0020for\u0020my\u0020wife\u0020and\u0020she\u0020absolutely\u0020loves.\u0020In\u0020my\u0020option\u0020the\u0020material\u0020the\u0020map\u0020is\u0020made\u0020of\u0020is\u0020top\u0020quality\u0020and\u0020the\u0020map\u0020came\u0020really\u0020quickly.",
+      "reviewRating": {
+        "@type": "Rating",
+        "bestRating": "5",
+        "ratingValue": "5",
+        "worstRating": "1"
+      }
+    },
+  
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Alice\u0020Dickinson",
+        "image": "https\u003A\/\/d1tcpqtzfohdid.cloudfront.net\/reviewphotos\/8911f1354adc7f5e672eb8abb7e6f33d.jpg"
+      },
+      "datePublished": "2022-02-25",
+      "description": "I\u0020made\u0020a\u0020map\u0020for\u0020my\u0020mums\u0020birthday\u0020and\u0020she\u0020absolutely\u0020loved\u0020it.\u0020Definitely\u0020buying\u0020another\u0020one\u0020soon,\u0020probably\u0020for\u0020another\u0020family\u0020member\u0020or\u0020friend",
+      "reviewRating": {
+        "@type": "Rating",
+        "bestRating": "5",
+        "ratingValue": "5",
+        "worstRating": "1"
+      }
+    },
+  
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Thao\u0020Phuong\u0020Le",
+        "image": "https\u003A\/\/d1tcpqtzfohdid.cloudfront.net\/reviewphotos\/bdccd07bda006d5f641ee061b9cbb55d.jpg"
+      },
+      "datePublished": "2019-12-05",
+      "description": "As\u0020my\u0020boyfriend\u0020is\u0020an\u0020astrophysicist,\u0020I\u0020knew\u0020he\u0020would\u0020be\u0020very\u0020skeptical\u0020of\u0020the\u0020accuracy\u0020of\u0020the\u0020map.\u0020Luckily\u0020it\u0020was\u0020very\u0020accurate\u0020\u0028he\u0020checked,\u0020of\u0020course\u0029\u0020and\u0020the\u0020printing\u0020material\u0020was\u0020kind\u0020of\u0020chalk\u002Dlike,\u0020gives\u0020it\u0020a\u0020very\u0020unique\u0020feel.\u0020Boyfriend\u0020was\u0020very\u0020impressed,\u0020and\u0020so\u0020was\u0020I\u0021",
+      "reviewRating": {
+        "@type": "Rating",
+        "bestRating": "5",
+        "ratingValue": "5",
+        "worstRating": "1"
+      }
+    },
+  
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Dee\u0020Palmer\u002DAkers",
+        "image": "https\u003A\/\/d1tcpqtzfohdid.cloudfront.net\/reviewphotos\/c5dc9eee3577bdfa511cccc13ad04a0b.jpg"
+      },
+      "datePublished": "2019-11-19",
+      "description": "I\u0020ordered\u0020this\u0020for\u0020my\u0020first\u0020Anniversary\u0020with\u0020my\u0020husband.\u0020He\u0020LOVED\u0020it.\u0020It\u0020was\u0020a\u0020unique\u0020gift\u0020that\u0020I\u0020could\u0020only\u0020have\u0020dreamt\u0020of.\u0020Thank\u0020you\u0020for\u0020helping\u0020me\u0020pick\u0020the\u0020perfect\u0020gift\u0021",
+      "reviewRating": {
+        "@type": "Rating",
+        "bestRating": "5",
+        "ratingValue": "5",
+        "worstRating": "1"
+      }
+    }
+    ]
+}
+</script>
+
+
+
+    <div class="review animate-when-scrolled">
+        <div class="profile">
+            <div class="profile-photo">
+                <img lazy-src="https://d1tcpqtzfohdid.cloudfront.net/reviewphotos/d3ef88cbd7456032302abe9808b92ec6.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner Belle Thompson" />
+            </div>
+            <div class="profile-text">
+                <div class="profile-name">
+                    <strong>Belle Thompson</strong>
+                    reviewed
+                    <strong>Under Lucky Stars</strong> &ndash; <span class="stars">5 &#x2605;</span>
+                </div>
+                <div class="date">
+                    March 7, 2022 at 5:32 AM
+                </div>
+            </div>
+        </div>
+        <div class="text large">
+            Highly recommend, this was a gift for our mother and she loved it
+        </div>
+    </div>
+
+
+    <div class="review animate-when-scrolled">
+        <div class="profile">
+            <div class="profile-photo">
+                <img lazy-src="https://d1tcpqtzfohdid.cloudfront.net/reviewphotos/fa6c7c4adcca08634dd7b76c5a55e066.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner Liam O&#039;Rourke" />
+            </div>
+            <div class="profile-text">
+                <div class="profile-name">
+                    <strong>Liam O&#039;Rourke</strong>
+                    reviewed
+                    <strong>Under Lucky Stars</strong> &ndash; <span class="stars">5 &#x2605;</span>
+                </div>
+                <div class="date">
+                    March 1, 2022 at 4:41 PM
+                </div>
+            </div>
+        </div>
+        <div class="text small">
+            I got a map of our wedding day for my wife and she absolutely loves. In my option the material the map is made of is top quality and the map came really quickly.
+        </div>
+    </div>
+
+
+    <div class="review animate-when-scrolled">
+        <div class="profile">
+            <div class="profile-photo">
+                <img lazy-src="https://d1tcpqtzfohdid.cloudfront.net/reviewphotos/8911f1354adc7f5e672eb8abb7e6f33d.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner Alice Dickinson" />
+            </div>
+            <div class="profile-text">
+                <div class="profile-name">
+                    <strong>Alice Dickinson</strong>
+                    reviewed
+                    <strong>Under Lucky Stars</strong> &ndash; <span class="stars">5 &#x2605;</span>
+                </div>
+                <div class="date">
+                    February 25, 2022 at 4:11 PM
+                </div>
+            </div>
+        </div>
+        <div class="text small">
+            I made a map for my mums birthday and she absolutely loved it. Definitely buying another one soon, probably for another family member or friend
+        </div>
+    </div>
+
+
+    <div class="review animate-when-scrolled">
+        <div class="profile">
+            <div class="profile-photo">
+                <img lazy-src="https://d1tcpqtzfohdid.cloudfront.net/reviewphotos/bdccd07bda006d5f641ee061b9cbb55d.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner Thao Phuong Le" />
+            </div>
+            <div class="profile-text">
+                <div class="profile-name">
+                    <strong>Thao Phuong Le</strong>
+                    reviewed
+                    <strong>Under Lucky Stars</strong> &ndash; <span class="stars">5 &#x2605;</span>
+                </div>
+                <div class="date">
+                    December 5, 2019 at 8:53 PM
+                </div>
+            </div>
+        </div>
+        <div class="text small">
+            As my boyfriend is an astrophysicist, I knew he would be very skeptical of the accuracy of the map. Luckily it was very accurate (he checked, of course) and the printing material was kind of chalk-like, gives it a very unique feel. Boyfriend was very impressed, and so was I!
+        </div>
+    </div>
+
+
+    <div class="review animate-when-scrolled">
+        <div class="profile">
+            <div class="profile-photo">
+                <img lazy-src="https://d1tcpqtzfohdid.cloudfront.net/reviewphotos/c5dc9eee3577bdfa511cccc13ad04a0b.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Owner Dee Palmer-Akers" />
+            </div>
+            <div class="profile-text">
+                <div class="profile-name">
+                    <strong>Dee Palmer-Akers</strong>
+                    reviewed
+                    <strong>Under Lucky Stars</strong> &ndash; <span class="stars">5 &#x2605;</span>
+                </div>
+                <div class="date">
+                    November 19, 2019 at 4:28 PM
+                </div>
+            </div>
+        </div>
+        <div class="text small">
+            I ordered this for my first Anniversary with my husband. He LOVED it. It was a unique gift that I could only have dreamt of. Thank you for helping me pick the perfect gift!
+        </div>
+    </div>
+
+
+
+
+                <div class="more">See more reviews <a href="#">here</a></div>
+
+            </article>
+        </section>
+        
+                        <section id="love-letters-section">
+            <article>
+                <h2>Love Letters</h2>
+
+                <p class="centered">A few of the many we got (not to sound braggy)</p>
+
+                <div class="love-letters">
+                    <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/love1.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Just received it OMG thank you thank you so much, I love it! It's so beautiful! Will definitely send you some pictures as soon as gift it to my bf, thank you guys for your full support and the best customer service" />
+                    <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/love2.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Hello, I will tell you that my purchase was in great shape upon arrival and my husband of just a few years was speechless. He had it framed immediately and hung it in his den. He is very particular about what goes in his den! So we were both very pleased." />
+                    <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/love3.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Thank you so much!!! What you guys do is absolutely amazing this is the perfect gift, everyone I've told about it has loved the idea and has made plans to order one for future gifts to others, again, thank you!" />
+                    <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/love4.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Hi! I am Shania! I just wanted to let you all know that you did a phenomenal job and that the star-map as well as the frame are gorgeous! The present is being well-loved. Thank you again" />
+                    <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/love5.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="I got my pakcage today and I'm beyond happy thank you so much" />
+                    <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/love6.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="This was my wedding gift to my husband, thanks for making my dreams come true!" />
+                    <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/love7.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Hello my dears! My parcel arrived today and I am super happy and so impressed with the quality! The poster looks really nice! I ordered it on 3 September and that it arrives so fast in Germany I would not have thought. Great work! Thank you very much!" />
+                    <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/love8.jpg" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Thank you again. She loved it so much that her mom had to wait til the next day to take a picture because she wouldn't stop crying" />
+                </div>
+
+            </article>
+        </section>
+                
+                    <section id="inspiration-section">
+    <h2 class="inspiration-maps-section-header">Do you need some inspiration?</h2>
+
+    <div id="inspiration-maps-pages" class="animate-when-scrolled">
+            <a class="inspiration-map"
+             href="#"
+        >
+            <img alt="The yin to my yang" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' lazy-src="https://star-charts.imgix.net/7fa6743eb6_60493391_1202048193301421_3962738634171243695_n.jpg?fit=crop&amp;w=450&amp;h=450"/>
+
+            <button>
+                View design            </button>
+
+            <div class="inspiration-map-content">
+                <h2>The yin to my yang</h2>
+
+                <div class="inspiration-map-text">
+                    <p>This particularly eye-catching personalized star map  represents two people in a harmonious relationship</p>
+                </div>
+            </div>
+        </a>
+            <a class="inspiration-map"
+             href="#"
+        >
+            <img alt="White wedding day star map" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' lazy-src="https://star-charts.imgix.net/c8cae14dab_24274779_2029049760697859_2197725372269723648_n.jpg?fit=crop&amp;w=450&amp;h=450"/>
+
+            <button>
+                View design            </button>
+
+            <div class="inspiration-map-content">
+                <h2>White wedding day star map</h2>
+
+                <div class="inspiration-map-text">
+                    <p>A touching, original and lifelong reminder of a wonderful moment joining forever the lives of a happy couple</p>
+                </div>
+            </div>
+        </a>
+            <a class="inspiration-map"
+             href="#"
+        >
+            <img alt="Live with No Regrets, Love Without Limits" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' lazy-src="https://star-charts.imgix.net/e217ff46cc_mapcat.jpg?fit=crop&amp;w=450&amp;h=450"/>
+
+            <button>
+                View design            </button>
+
+            <div class="inspiration-map-content">
+                <h2>Live with No Regrets, Love Without Limits</h2>
+
+                <div class="inspiration-map-text">
+                    <p>A personalized star poster is the best present. Add your unique message to one of our variety of designs</p>
+                </div>
+            </div>
+        </a>
+            <a class="inspiration-map"
+             href="#"
+        >
+            <img alt="Baby Leonardo&#039;s Birth Stars" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' lazy-src="https://star-charts.imgix.net/47bc731ddb_leonardobaby.jpg?fit=crop&amp;w=450&amp;h=450"/>
+
+            <button>
+                View design            </button>
+
+            <div class="inspiration-map-content">
+                <h2>Baby Leonardo&#039;s Birth Stars</h2>
+
+                <div class="inspiration-map-text">
+                    <p>An original and enchanting present to celebrate a baby&#039;s birth. The stars look lovely above the crib</p>
+                </div>
+            </div>
+        </a>
+            <a class="inspiration-map"
+             href="#"
+        >
+            <img alt="Wedding day star map with stylish design" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' lazy-src="https://star-charts.imgix.net/1234a8b9ab_67610503_220572978918311_7187320333478803627_n.jpg?fit=crop&amp;w=450&amp;h=450"/>
+
+            <button>
+                View design            </button>
+
+            <div class="inspiration-map-content">
+                <h2>Wedding day star map with stylish design</h2>
+
+                <div class="inspiration-map-text">
+                    <p>Stylish Wedding day star map is the finishing touch on a gallery wall</p>
+                </div>
+            </div>
+        </a>
+            <div class="padding"></div>
+    </div>
+</section>
+
+        
+            <section id="title-inspiration-section">
+        <article>
+            <h2>Title Inspiration</h2>
+            <p class="centered">If you are not sure what to write, try one of these titles:</p>
+
+            <ul>
+                <li>You were born under these stars</li>
+                <li>Born under lucky stars</li>
+                <li>A star was born</li>
+                <li>The stars above when you were born</li>
+                <li>The stars when the best friend in the world was born</li>
+                <li>Keep your eyes on the stars, and your feet on the ground</li>
+                <li>The sky when our little miracle was born</li>
+                <li>An angel was born</li>
+                <li>The stars welcomed you into this world</li>
+            </ul>
+        </article>
+    </section>
+
+                <section id="details-section">
+            <article>
+                <h2>Details</h2>
+                <p class="centered">
+                    Crisp resolution, impeccable printing quality.                </p>
+
+
+                <div class="designs">
+                    <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/r1.png" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Close Up" />
+                    <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/r2.png" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Close Up" />
+                    <img class="animate-when-scrolled" lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/r3.png" src='https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty.svg' alt="Star Map Close Up" />
+                </div>
+            </article>
+        </section>
+        
+        <section id="faq-section">
+            <article>
+                <h2>FAQ</h2>
+
+                                <h3>I love these, how much does it cost?</h3>
+
+                <p>
+                    Depends on the size and the frame. Our smallest print (12 x 16 inches or 30 x 40 cm) starts at $45, shipping included.
+ The product is the highest quality smooth art print on 240 GSM papers. We are very proud of it.                </p>
+
+                <h3>How long is the shipping?</h3>
+
+                <p>To the US, the EU and Australia we estimate 7-10 calendar days, to Latin America 14-31 days, and to the rest of the world 10-21 days.</p>
+
+                <p>
+                    If that's too slow for you, Express shipping is available to most countries.                </p>
+
+                                    <h3>Do you ship to Pakistan?</h3>
+                                            <p>Yes, absolutely.</p>
+                                    
+                <h3>How do I pay?</h3>
+
+                <p>We accept major credit cards and PayPal.</p>
+
+                <h3>How do I order?</h3>
+
+                <p>You can design, preview and order your beautiful print on our website.
+ <a href="#">Click here</a>.                </p>
+
+                                
+                <h3>Is this the perfect gift?</h3>
+
+                <p>Yes, it is.</p>
+                
+                <h3>More questions?</h3>
+
+                <p>
+                    You can find answers <a onclick="if(window.zE){zE(function() {zE.activate();}); return false;}" href="#" target="_blank">here</a>.                </p>
+            </article>
+        </section>
+
+        
+        <section id="stories-section" class="animate-when-scrolled">
+            <h2>Stories</h2>
+            <p class="centered">We publish stories you sent us about important moments that you made into a star map.<br>Here are some of our favorites.</p>
+            <div id="stories">
+
+                <div class="story" style="background-image: url(https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/story1-header.jpg)">
+                    <h2>Christie's Story</h2>
+
+                    <div class="story-text">
+                        <p>On October 1st, 2017 at 9pm, my boyfriend Justin told me he loved me for the very first time. I responded with “Took you long enough.”
+                            Less than an hour later a gunman opened fire down on us.</p>
+                    </div>
+
+                    <a href="#" target="_blank">Read more</a>
+                </div>
+
+                <div class="story" style="background-image: url(https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/story2-header.jpg)">
+                    <h2>Megan's Story</h2>
+
+                    <div class="story-text">
+                        <p>So this was the weird night when I met my husband. I had just finished a 14-hour shift at a bakery, was going through a fairly nasty divorce (married far too young), and just wanted to grab a drink at the bar next door before going home to sleep and start it all over.</p>
+                    </div>
+
+                    <a href="#" target="_blank">Read more</a>
+                </div>
+
+                <div class="story" style="background-image: url(https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/story3-header.jpg)">
+                    <h2>Robert's Story</h2>
+                    <div class="story-text">
+                        <p>
+                            At about 1am I was woken up by my wife then 26 weeks pregnant with our first child.
+                            She had been having trouble sleeping for the past few nights but this time she said we needed to go to the ER because something was not right.
+                    </div>
+
+                    <a href="#" target="_blank">Read more</a>
+                </div>
+
+                <div class="padding"></div>
+
+            </div>
+        </section>
+
+        
+            <section id="video-section">
+        <article>
+            <h2>Watch Our Video</h2>
+            <div class="video-wrapper">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/zB8N_OEfj0k" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </article>
+    </section>
+
+        <section id="logo-end">
+            <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/logo-new.png" srcset="https://d3j4c7e2o820k1.cloudfront.net/assets/img/logo-new@2x.png 2x" alt="Under Lucky Stars Logo">
+        </section>
+
+                <footer>
+    <div id="footer-links">
+        <div class='footer-section'>
+            <h2>
+                About Us            </h2>
+            <ul>
+                <li>
+                    <a href="#" target="_blank">Five Star Give Ideas AI Tool</a>
+                </li>
+                <li>
+                    <a href="#" target="_blank">#SaveOurStars</a>
+                </li>
+                <li>
+                    <a href="#" target="_blank">Facebook</a>
+                </li>
+                <li>
+                    <a href="#" target="_blank">Instagram</a>
+                </li>
+                <li>
+                    <a href="/en/press">Press room</a>
+                </li>
+                <li>
+                    <a href="#" target="_blank">Blog</a>
+                </li>
+                                <li>
+                    <a href="#" target="_blank">Your Stories</a>
+                </li>
+                                                                                                <li>
+                            <a href="#" target="_blank">Under Lucky Stars en Español</a>
+                        </li>
+                                                                <li>
+                            <a href="#" target="_blank">Under Lucky Stars auf Deutsch</a>
+                        </li>
+                                                                <li>
+                            <a href="#" target="_blank">Under Lucky Stars en Français</a>
+                        </li>
+                                                                <li>
+                            <a href="#" target="_blank">Under Lucky Stars in Italiano</a>
+                        </li>
+                                                                <li>
+                            <a href="#" target="_blank">Under Lucky Stars em Português</a>
+                        </li>
+                                                                <li>
+                            <a href="#" target="_blank">Under Lucky Stars 日本語</a>
+                        </li>
+                                                                <li>
+                            <a href="#" target="_blank">Under Lucky Stars magyarul</a>
+                        </li>
+                                                </ul>
+        </div>
+
+        <div class='footer-section'>
+            <h2>
+                Legal            </h2>
+            <ul>
+                <li>
+                    <a href="#">Terms of Service</a>
+                </li>
+                <li>
+                    <a href="#">Privacy Policy</a>
+                </li>
+                <li>
+                    <a href="#">Return Policy</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class='footer-section'>
+            <h2>
+                Help            </h2>
+            <ul>
+                <li>
+                    <a href="/en/faq">FAQ</a>
+                </li>
+                                <li>
+                    <a href="#" target="_blank">Support Center</a>
+                </li>
+                                <li>
+                    <a href="#">Email Us</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class='footer-section'>
+            <h2>
+                Our Products            </h2>
+            <ul>
+                <li>
+                    <a href="#">How it works</a>
+                </li>
+                <li>
+                    <a href="#">Astronomically Verified</a>
+                </li>
+                <li>
+                    <a href="#">Reviews</a>
+                </li>
+            </ul>
+        </div>
+
+                        <div class='footer-section'>
+            <h2>
+                Occasions            </h2>
+            <ul>
+                <li>
+                    <a href="#">Star Maps For Moms</a>
+                </li>
+                <li>
+                    <a href="#">Star Maps For Couples</a>
+                </li>
+                <li>
+                    <a href="#">Star Maps For Birthdays</a>
+                </li>
+                <li>
+                    <a href="#">Star Maps For Babies</a>
+                </li>
+                <li>
+                    <a href="#">Star Maps For Weddings</a>
+                </li>
+                <li>
+                    <a href="#">Star Maps For Engagement</a>
+                </li>
+                <li>
+                    <a href="#">Star Maps For Anniversaries</a>
+                </li>
+            </ul>
+        </div>
+                    </div>
+    <div id="footer-badges">
+        <div id="card-issuers">
+            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/card-issuers/visa.png" width="64" height="40" alt="Visa" />
+            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/card-issuers/mastercard.png" width="64" height="40" alt="MasterCard" />
+            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/card-issuers/maestro.png" width="64" height="40" alt="Maestro" />
+            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/card-issuers/discover.png" width="64" height="40" alt="Discover" />
+            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/card-issuers/paypal.png" width="64" height="40" alt="PayPal" />
+        </div>
+
+        <div id="carbon-neutral">
+            <img lazy-src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/leaf.png" srcset="https://d3j4c7e2o820k1.cloudfront.net/assets/img/leaf@2x.png 2x" alt="Carbon Neutral" />
+            <a href="#" target="_blank">Carbon Neutral</a>
+        </div>
+    </div>
+</footer>
+            </div>
+
+    <div class="cta ">
+        <a href="#" class="button">
+                        View Your Star Map
+                    </a>
+        <div class="later">
+            Not here and now?            <br>
+            <a href="#" id="reveal-later">Leave us your email and we'll remind you.</a>
+        </div>
+
+        <div id="info-banner">Yes! We ship to Pakistan &#127477;&#127472; !</div>
+
+        <div class="later-form">
+            <form method="post">
+            <div ><div><label for="firstName" class="required">First name</label><input type="text" id="firstName" name="firstName" required="required" /></div><div><label for="email" class="required">Email</label><input type="email" id="email" name="email" required="required" /></div><input type="hidden" id="_token" name="_token" value="WAMYW3uppZY-AcwRsWvQCCm8SPtgD4NeHyRyCLipGtM" /></div>
+
+            <div>
+                <div>
+                    <input type="submit" value="Remind me" />
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<div id="surprise-videos-overlay">
+    <div id="surprise-videos-container">
+        <video id="surprise-video" poster="https://d1tcpqtzfohdid.cloudfront.net/video/01t.jpg" controls>
+            <source src="https://d1tcpqtzfohdid.cloudfront.net/video/01.mp4" type="video/mp4">
+        </video>
+
+        
+        <ul id="surprise-video-playlist">
+                        <li class="surprise-video-in-playlist" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/01.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/01t.jpg" data-tracking-id="video-01-list">
+                <div class="surprise-video-thumbnail-in-playlist">
+                    <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/01.jpg" alt="Keifer's video of opening an Under Lucky Stars surprise star map" />
+                    <div class="play-button"></div>
+                </div>
+                <div class="surprise-video-details-in-playlist">
+                    <h3>Keifer's Video <span style="color: red">&hearts;</span></h3>
+                    <p class="time">00:42</p>
+                </div>
+            </li>
+                        <li class="surprise-video-in-playlist" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/02.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/02t.jpg" data-tracking-id="video-02-list">
+                <div class="surprise-video-thumbnail-in-playlist">
+                    <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/02.jpg" alt="Hank's video of opening an Under Lucky Stars surprise star map" />
+                    <div class="play-button"></div>
+                </div>
+                <div class="surprise-video-details-in-playlist">
+                    <h3>Hank's Video <span style="color: red">&hearts;</span></h3>
+                    <p class="time">00:51</p>
+                </div>
+            </li>
+                        <li class="surprise-video-in-playlist" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/03.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/03t.jpg" data-tracking-id="video-03-list">
+                <div class="surprise-video-thumbnail-in-playlist">
+                    <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/03.jpg" alt="Isaiah's video of opening an Under Lucky Stars surprise star map" />
+                    <div class="play-button"></div>
+                </div>
+                <div class="surprise-video-details-in-playlist">
+                    <h3>Isaiah's Video <span style="color: red">&hearts;</span></h3>
+                    <p class="time">00:31</p>
+                </div>
+            </li>
+                        <li class="surprise-video-in-playlist" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/04.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/04t.jpg" data-tracking-id="video-04-list">
+                <div class="surprise-video-thumbnail-in-playlist">
+                    <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/04.jpg" alt="Rovic's video of opening an Under Lucky Stars surprise star map" />
+                    <div class="play-button"></div>
+                </div>
+                <div class="surprise-video-details-in-playlist">
+                    <h3>Rovic's Video <span style="color: red">&hearts;</span></h3>
+                    <p class="time">00:41</p>
+                </div>
+            </li>
+                        <li class="surprise-video-in-playlist" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/05.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/05t.jpg" data-tracking-id="video-05-list">
+                <div class="surprise-video-thumbnail-in-playlist">
+                    <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/05.jpg" alt="Becky's video of opening an Under Lucky Stars surprise star map" />
+                    <div class="play-button"></div>
+                </div>
+                <div class="surprise-video-details-in-playlist">
+                    <h3>Becky's Video <span style="color: red">&hearts;</span></h3>
+                    <p class="time">00:37</p>
+                </div>
+            </li>
+                        <li class="surprise-video-in-playlist" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/06.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/06t.jpg" data-tracking-id="video-06-list">
+                <div class="surprise-video-thumbnail-in-playlist">
+                    <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/06.jpg" alt="Dominic's video of opening an Under Lucky Stars surprise star map" />
+                    <div class="play-button"></div>
+                </div>
+                <div class="surprise-video-details-in-playlist">
+                    <h3>Dominic's Video <span style="color: red">&hearts;</span></h3>
+                    <p class="time">00:27</p>
+                </div>
+            </li>
+                        <li class="surprise-video-in-playlist" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/07.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/07t.jpg" data-tracking-id="video-07-list">
+                <div class="surprise-video-thumbnail-in-playlist">
+                    <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/07.jpg" alt="Javier's video of opening an Under Lucky Stars surprise star map" />
+                    <div class="play-button"></div>
+                </div>
+                <div class="surprise-video-details-in-playlist">
+                    <h3>Javier's Video <span style="color: red">&hearts;</span></h3>
+                    <p class="time">00:13</p>
+                </div>
+            </li>
+                        <li class="surprise-video-in-playlist" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/08.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/08t.jpg" data-tracking-id="video-08-list">
+                <div class="surprise-video-thumbnail-in-playlist">
+                    <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/08.jpg" alt="Justin's video of opening an Under Lucky Stars surprise star map" />
+                    <div class="play-button"></div>
+                </div>
+                <div class="surprise-video-details-in-playlist">
+                    <h3>Justin's Video <span style="color: red">&hearts;</span></h3>
+                    <p class="time">00:23</p>
+                </div>
+            </li>
+                        <li class="surprise-video-in-playlist" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/09.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/09t.jpg" data-tracking-id="video-09-list">
+                <div class="surprise-video-thumbnail-in-playlist">
+                    <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/09.jpg" alt="Melissa's video of opening an Under Lucky Stars surprise star map" />
+                    <div class="play-button"></div>
+                </div>
+                <div class="surprise-video-details-in-playlist">
+                    <h3>Melissa's Video <span style="color: red">&hearts;</span></h3>
+                    <p class="time">01:38</p>
+                </div>
+            </li>
+                        <li class="surprise-video-in-playlist" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/10.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/10t.jpg" data-tracking-id="video-10-list">
+                <div class="surprise-video-thumbnail-in-playlist">
+                    <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/10.jpg" alt="Steven's video of opening an Under Lucky Stars surprise star map" />
+                    <div class="play-button"></div>
+                </div>
+                <div class="surprise-video-details-in-playlist">
+                    <h3>Steven's Video <span style="color: red">&hearts;</span></h3>
+                    <p class="time">01:4</p>
+                </div>
+            </li>
+                        <li class="surprise-video-in-playlist" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/11.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/11t.jpg" data-tracking-id="video-11-list">
+                <div class="surprise-video-thumbnail-in-playlist">
+                    <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/11.jpg" alt="Alfonso's video of opening an Under Lucky Stars surprise star map" />
+                    <div class="play-button"></div>
+                </div>
+                <div class="surprise-video-details-in-playlist">
+                    <h3>Alfonso's Video <span style="color: red">&hearts;</span></h3>
+                    <p class="time">00:16</p>
+                </div>
+            </li>
+                        <li class="surprise-video-in-playlist" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/12.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/12t.jpg" data-tracking-id="video-12-list">
+                <div class="surprise-video-thumbnail-in-playlist">
+                    <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/12.jpg" alt="Ashton's video of opening an Under Lucky Stars surprise star map" />
+                    <div class="play-button"></div>
+                </div>
+                <div class="surprise-video-details-in-playlist">
+                    <h3>Ashton's Video <span style="color: red">&hearts;</span></h3>
+                    <p class="time">00:32</p>
+                </div>
+            </li>
+                        <li class="surprise-video-in-playlist" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/13.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/13t.jpg" data-tracking-id="video-13-list">
+                <div class="surprise-video-thumbnail-in-playlist">
+                    <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/13.jpg" alt="Cameron's video of opening an Under Lucky Stars surprise star map" />
+                    <div class="play-button"></div>
+                </div>
+                <div class="surprise-video-details-in-playlist">
+                    <h3>Cameron's Video <span style="color: red">&hearts;</span></h3>
+                    <p class="time">00:36</p>
+                </div>
+            </li>
+                        <li class="surprise-video-in-playlist" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/14.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/14t.jpg" data-tracking-id="video-14-list">
+                <div class="surprise-video-thumbnail-in-playlist">
+                    <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/14.jpg" alt="Domenic's video of opening an Under Lucky Stars surprise star map" />
+                    <div class="play-button"></div>
+                </div>
+                <div class="surprise-video-details-in-playlist">
+                    <h3>Domenic's Video <span style="color: red">&hearts;</span></h3>
+                    <p class="time">00:36</p>
+                </div>
+            </li>
+                        <li class="surprise-video-in-playlist" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/15.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/15t.jpg" data-tracking-id="video-15-list">
+                <div class="surprise-video-thumbnail-in-playlist">
+                    <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/15.jpg" alt="Taylor's video of opening an Under Lucky Stars surprise star map" />
+                    <div class="play-button"></div>
+                </div>
+                <div class="surprise-video-details-in-playlist">
+                    <h3>Taylor's Video <span style="color: red">&hearts;</span></h3>
+                    <p class="time">00:28</p>
+                </div>
+            </li>
+                        <li class="surprise-video-in-playlist" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/16.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/16t.jpg" data-tracking-id="video-16-list">
+                <div class="surprise-video-thumbnail-in-playlist">
+                    <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/16.jpg" alt="Raymi's video of opening an Under Lucky Stars surprise star map" />
+                    <div class="play-button"></div>
+                </div>
+                <div class="surprise-video-details-in-playlist">
+                    <h3>Raymi's Video <span style="color: red">&hearts;</span></h3>
+                    <p class="time">00:30</p>
+                </div>
+            </li>
+                        <li class="surprise-video-in-playlist" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/17.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/17t.jpg" data-tracking-id="video-17-list">
+                <div class="surprise-video-thumbnail-in-playlist">
+                    <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/17.jpg" alt="Trevor's video of opening an Under Lucky Stars surprise star map" />
+                    <div class="play-button"></div>
+                </div>
+                <div class="surprise-video-details-in-playlist">
+                    <h3>Trevor's Video <span style="color: red">&hearts;</span></h3>
+                    <p class="time">00:29</p>
+                </div>
+            </li>
+                        <li class="surprise-video-in-playlist" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/18.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/18t.jpg" data-tracking-id="video-18-list">
+                <div class="surprise-video-thumbnail-in-playlist">
+                    <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/18.jpg" alt="Juan's video of opening an Under Lucky Stars surprise star map" />
+                    <div class="play-button"></div>
+                </div>
+                <div class="surprise-video-details-in-playlist">
+                    <h3>Juan's Video <span style="color: red">&hearts;</span></h3>
+                    <p class="time">00:31</p>
+                </div>
+            </li>
+                        <li class="surprise-video-in-playlist" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/19.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/19t.jpg" data-tracking-id="video-19-list">
+                <div class="surprise-video-thumbnail-in-playlist">
+                    <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/19.jpg" alt="Emeraude's video of opening an Under Lucky Stars surprise star map" />
+                    <div class="play-button"></div>
+                </div>
+                <div class="surprise-video-details-in-playlist">
+                    <h3>Emeraude's Video <span style="color: red">&hearts;</span></h3>
+                    <p class="time">00:24</p>
+                </div>
+            </li>
+                        <li class="surprise-video-in-playlist" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/20.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/20t.jpg" data-tracking-id="video-20-list">
+                <div class="surprise-video-thumbnail-in-playlist">
+                    <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/20.jpg" alt="Carleigh 's video of opening an Under Lucky Stars surprise star map" />
+                    <div class="play-button"></div>
+                </div>
+                <div class="surprise-video-details-in-playlist">
+                    <h3>Carleigh 's Video <span style="color: red">&hearts;</span></h3>
+                    <p class="time">00:24</p>
+                </div>
+            </li>
+                        <li class="surprise-video-in-playlist" data-video-url="https://d1tcpqtzfohdid.cloudfront.net/video/21.mp4" data-video-thumbnail="https://d1tcpqtzfohdid.cloudfront.net/video/21t.jpg" data-tracking-id="video-21-list">
+                <div class="surprise-video-thumbnail-in-playlist">
+                    <img src="https://d3j4c7e2o820k1.cloudfront.net/assets/img/what/empty-2-1.svg" lazy-src="https://d1tcpqtzfohdid.cloudfront.net/video/21.jpg" alt="Lawlor's video of opening an Under Lucky Stars surprise star map" />
+                    <div class="play-button"></div>
+                </div>
+                <div class="surprise-video-details-in-playlist">
+                    <h3>Lawlor's Video <span style="color: red">&hearts;</span></h3>
+                    <p class="time">00:21</p>
+                </div>
+            </li>
+                    </ul>
+    </div>
+
+    <button id="surprise-video-close-button"></button>
+    <button id="surprise-video-close-button-big">Close</button>
+</div>
+
+<script type="text/javascript" src="https://d3j4c7e2o820k1.cloudfront.net/js/d500aac-e6321e0.js"></script>
+
+<script>
+    window.IntersectionObserver || document.write('<script src="https://d3j4c7e2o820k1.cloudfront.net/js/455ed39-7016654.js"><\/script>');
+</script>
+
+<script type="text/javascript">
+
+    window.hasTopBanner = !!document.getElementById('top-banner');
+
+    (function() {
+
+        var bottomCta = $('.cta');
+        var revealAfter = $('.reveal-bottom-cta-after');
+        var revealAfterBottom;
+        if (revealAfter.length) {
+            revealAfterBottom = revealAfter.offset().top + revealAfter.outerHeight();
+        } else {
+            revealAfterBottom = 0;
+        }
+
+        var bottomCtaShown = false;
+        var previousScrollTop = undefined;
+        var jqWindow = $(window);
+
+        setTimeout(function() {
+            function scrollListener() {
+                var scrollTop = jqWindow.scrollTop();
+
+                if (previousScrollTop === scrollTop) {
+                    return;
+                }
+
+                if (scrollTop > revealAfterBottom) {
+                    if (!bottomCtaShown) {
+                        bottomCta.slideDown('slow');
+                        bottomCta.addClass('animate');
+                        bottomCtaShown = true;
+
+                        if (window.zE && window.hasTopBanner) {
+                            zE('webWidget', 'updateSettings', {
+                                webWidget: {
+                                    position: {
+                                        horizontal: 'right',
+                                        vertical: 'top'
+                                    },
+                                }
+                            });
+                        }
+                    }
+                } else {
+                    if (bottomCtaShown) {
+                        bottomCta.slideUp('slow');
+                        bottomCta.removeClass('animate');
+                        bottomCtaShown = false;
+
+                        if (window.zE && window.hasTopBanner) {
+                            zE('webWidget', 'updateSettings', {
+                                webWidget: {
+                                    position: {
+                                        horizontal: 'right',
+                                        vertical: 'bottom'
+                                    },
+                                }
+                            });
+                        }
+                    }
+                }
+
+                previousScrollTop = scrollTop;
+            }
+
+            jqWindow.scroll(scrollListener);
+            scrollListener();
+        }, 3000);
+
+    }());
+
+    (function() {
+
+        var videoContainer = $('.video-container');
+        var previousScrollTop = undefined;
+        var jqWindow = $(window);
+        var body = $('body');
+        var absoluteTop = videoContainer.offset().top;
+
+        function scrollListener() {
+            var scrollTop = jqWindow.scrollTop();
+
+            if (previousScrollTop === scrollTop) {
+                return;
+            }
+
+            if (body.hasClass('scrolled-through-banner')) {
+                if (scrollTop < absoluteTop) {
+                    $('body').removeClass('scrolled-through-banner');
+                }
+            } else {
+                absoluteTop = videoContainer.offset().top;
+                if (scrollTop >= videoContainer.offset().top) {
+                    $('body').addClass('scrolled-through-banner');
+                }
+            }
+
+            previousScrollTop = scrollTop;
+        }
+
+        jqWindow.scroll(scrollListener);
+        scrollListener();
+
+    }());
+
+    (function() {
+
+        var targets = document.querySelectorAll('.animate-when-scrolled');
+
+        for (var i = 0; i < targets.length; i++) {
+            var io = new IntersectionObserver(function(entries, observer) {
+
+                for (var j = 0; j < entries.length; j++) {
+                    if (entries[j].isIntersecting) {
+                        var target = entries[j].target;
+                        target.classList.add('animate');
+                        target.classList.remove('pre-animate');
+
+                        observer.disconnect();
+                   }
+                }
+            }, {threshold: 0.5});
+
+            io.observe(targets[i]);
+
+            targets[i].classList.add('pre-animate');
+        }
+
+    }());
+
+    (function() {
+        var jqWindow = $(window);
+        var examples = $('.examples');
+
+        function scrollTo(multiplier) {
+            examples.animate({
+                scrollLeft: examples.scrollLeft() + jqWindow.innerWidth() * multiplier
+            }, 500);
+        }
+
+        $('#example-paginator-right').click(function() {
+            scrollTo(0.9);
+        });
+
+        $('#example-paginator-left').click(function() {
+            scrollTo(-0.9);
+        });
+
+    }());
+
+    var targets = document.querySelectorAll('img[lazy-src]');
+
+    for (var i = 0; i < targets.length; i++) {
+        var io = new IntersectionObserver(function(entries, observer) {
+
+            for (var j = 0; j < entries.length; j++) {
+                if (entries[j].isIntersecting) {
+                    var img = entries[j].target;
+                    var src = img.getAttribute('lazy-src');
+
+                    img.setAttribute('src', src);
+
+                    observer.disconnect();
+                }
+            }
+        }, {
+            rootMargin: '300px 500px',
+            threshold: 0.1
+        });
+
+        io.observe(targets[i]);
+    }
+
+    $('#reveal-later').click(function() {
+        $('.later-form').slideDown( "slow", function() {
+            $('.later-form input')[0].focus();
+        });
+
+        return false;
+    });
+
+    if (window.matchMedia("(max-width : 767px)").matches) {
+        $('.products').cycle();
+    }
+
+    var video = document.querySelector('.video-container video');
+
+    window.addEventListener('touchstart', function videoStart() {
+        if (video.paused) video.play();
+        // remove from the window and call the function we are removing
+        this.removeEventListener('touchstart', videoStart);
+    });
+
+    (function() {
+
+        var videoOverlay = document.getElementById('surprise-videos-overlay');
+        var videoPlayer = document.getElementById('surprise-video');
+
+        if (!videoOverlay || !videoPlayer) {
+            return;
+        }
+
+        var videoPlayerSource = videoPlayer.querySelector('source');
+        var currentSource = videoPlayerSource.src;
+
+        var videoStartElements = document.querySelectorAll('.surprise-video, .surprise-video-in-playlist');
+        for (var i = 0; i < videoStartElements.length; i++) {
+            videoStartElements[i].addEventListener('click', function() {
+                playFromListItem(this);
+                gtag('event', 'play-surprise-video', {event_category: 'landing', event_label: this.getAttribute('data-tracking-id')});
+            });
+        }
+
+        var videoCloseElements = document.querySelectorAll('#surprise-video-close-button, #surprise-video-close-button-big, #surprise-videos-overlay');
+        for (var i = 0; i < videoCloseElements.length; i++) {
+            videoCloseElements[i].addEventListener('click', function(e) {
+                // Only clicks to the actual overlay.
+                if (this === videoOverlay && e.target !== this) {
+                    return;
+                }
+
+                videoOverlay.classList.remove('shown');
+                videoPlayer.pause();
+                videoPlayer.currentTime = 0;
+
+                gtag('event', 'close-surprise-video', { event_category: 'landing' });
+            });
+        }
+
+        videoPlayer.addEventListener('ended', function () {
+            var videoPlaylistElements = document.querySelectorAll('.surprise-video-in-playlist');
+            var playNext = false;
+            for (var i = 0; i < videoPlaylistElements.length; i++) {
+                if (playNext) {
+                    playFromListItem(videoPlaylistElements[i]);
+                    videoPlaylistElements[i].scrollIntoView({behavior: "smooth", block: "nearest", inline: "nearest"});
+                    gtag('event', 'play-surprise-video-auto', {event_category: 'landing', event_label: videoPlaylistElements[i].getAttribute('data-tracking-id')});
+                    break;
+                }
+                if (videoPlaylistElements[i].getAttribute('data-video-url') === currentSource) {
+                    playNext = true;
+                }
+            }
+        });
+
+        function playFromListItem(listItem) {
+            videoPlayerSource.setAttribute('src', listItem.getAttribute('data-video-url'));
+            currentSource = videoPlayerSource.src;
+            videoPlayer.setAttribute('poster', listItem.getAttribute('data-video-thumbnail'));
+
+            videoOverlay.classList.add('shown');
+
+            videoPlayer.load();
+            videoPlayer.play();
+
+            var videoPlaylistElements = document.querySelectorAll('.surprise-video-in-playlist');
+            for (var i = 0; i < videoPlaylistElements.length; i++) {
+                if (videoPlaylistElements[i].getAttribute('data-video-url') === currentSource) {
+                    videoPlaylistElements[i].classList.add('playing');
+                } else {
+                    videoPlaylistElements[i].classList.remove('playing');
+                }
+            }
+        }
+
+    }());
+
+        gtag('event', 'page_view', { page_path: 'what/birthday', send_to: 'G-LSBK82Y0LK' });
+
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+
+<script>
+    WebFont.load({
+        google: {
+            families: ['Roboto:300,400,500']
+        }
+    });
+</script>
+
+<!-- Start of underluckystars Zendesk Widget script -->
+<script>/*<![CDATA[*/window.zEmbed||function(e,t){var n,o,d,i,s,a=[],r=document.createElement("iframe");window.zEmbed=function(){a.push(arguments)},window.zE=window.zE||window.zEmbed,r.src="javascript:false",r.title="",r.role="presentation",(r.frameElement||r).style.cssText="display: none",d=document.getElementsByTagName("script"),d=d[d.length-1],d.parentNode.insertBefore(r,d),i=r.contentWindow,s=i.document;try{o=s}catch(e){n=document.domain,r.src='javascript:var d=document.open();d.domain="'+n+'";void(0);',o=s}o.open()._l=function(){var o=this.createElement("script");n&&(this.domain=n),o.id="js-iframe-async",o.src=e,this.t=+new Date,this.zendeskHost=t,this.zEQueue=a,this.body.appendChild(o)},o.write('<body onload="document._l();">'),o.close()}("https://assets.zendesk.com/embeddable_framework/main.js","underluckystars.zendesk.com");
+    /*]]>*/</script>
+<!-- End of underluckystars Zendesk Widget script -->
+
+<script>
+
+    function initZendesk() {
+        var nonEnglish = false;
+        var chatSuppressed = false;
+
+        if (document.body.classList) {
+            chatSuppressed = document.body.classList.contains('no-chat');
+        }
+        if (nonEnglish) {
+            chatSuppressed = true;
+        }
+
+        window.zESettings = {
+            analytics: true,
+            webWidget: {
+                position: {
+                    horizontal: 'right',
+                    vertical: window.hasTopBanner ? 'bottom' : 'top'
+                },
+                offset: {
+                    horizontal: '0px',
+                    vertical: '0px',
+                    mobile:{
+                        horizontal:'-10px',
+                        vertical:'0px'
+                    }
+                },
+                contactOptions: {
+                    enabled: true,
+                    chatLabelOnline: { '*': 'Live Chat' }
+                },
+                chat: {
+                    suppress: chatSuppressed,
+                    notifications: {
+                        mobile: {
+                            disable: true
+                        }
+                    }
+                }
+            }
+        };
+
+        chatSuppressInTitle(chatSuppressed);
+
+        if (window.zE) {
+            zE('webWidget:on', 'chat:status', function(status) {
+                if ('offline' === status || chatSuppressed) {
+
+                    zE('webWidget', 'updateSettings', {
+                        webWidget: {
+                            contactForm: {
+                                suppress: false
+                            },
+                            helpCenter: {
+                                suppress: false
+                            }
+                        }
+                    });
+
+                    zE('webWidget', 'helpCenter:setSuggestions', { labels: ['landing'] });
+
+                    toggleChatOnly(false);
+
+                } else {
+
+                    zE('webWidget', 'updateSettings', {
+                        webWidget: {
+                            helpCenter: {
+                                suppress: true
+                            },
+                            contactForm: {
+                                suppress: true
+                            }
+                        }
+                    });
+
+                    toggleChatOnly(true);
+                }
+
+                chatSuppressInTitle(chatSuppressed);
+            });
+
+            zE(function() {
+                zE.setLocale("en-US");
+                zE('webWidget', 'updateSettings', window.zESettings);
+            });
+        }
+    }
+
+    function toggleChatOnly(show) {
+        var targets = document.querySelectorAll('.only-chat');
+
+        for (var i = 0; i < targets.length; i++) {
+            if (show) {
+                targets[i].classList.add('shown');
+            } else {
+                targets[i].classList.remove('shown');
+            }
+        }
+    }
+
+    function chatSuppressInTitle(suppress) {
+        if (suppress) {
+            document.title = document.title.replace(' ★', '');
+            document.title = document.title + ' ★';
+        } else {
+            document.title = document.title.replace(' ★', '');
+        }
+    }
+
+    var hideEnd = dataLayer && dataLayer.hide && dataLayer.hide.end;
+    if (hideEnd) {
+        var timeout;
+        dataLayer.hide.end = function() {
+            window.clearTimeout(timeout);
+            initZendesk();
+            hideEnd();
+        };
+        timeout = window.setTimeout(dataLayer.hide.end, 4000);
+    } else {
+        initZendesk();
+    }
+
+    // function switchToInfluencerVideo()
+    // {
+    //     var video = document.getElementById('video');
+    //     function switchSource(videoElemeent, sourceUrl, thumbnailUrl) {
+    //         var source = document.createElement('source');
+    //
+    //         source.setAttribute('src', 'http://www.tools4movies.com/trailers/1012/Kill%20Bill%20Vol.3.mp4');
+    //
+    //         video.appendChild(source);
+    //         video.play();
+    //
+    //         setTimeout(function() {
+    //             video.pause();
+    //
+    //             source.setAttribute('src', 'http://www.tools4movies.com/trailers/1012/Despicable%20Me%202.mp4');
+    //
+    //             video.load();
+    //             video.play();
+    //         }, 3000);
+    //     }
+    //
+    //     var desktopVideo = document.getElementById('desktop-video');
+    //     var desktopVideo = document.getElementById('mobile-video');
+    //
+    // }
+</script>
+
+
+</body>
+</html>
